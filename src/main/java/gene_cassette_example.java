@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.net.URI;
 
 public class gene_cassette_example {
-    public static void main(String[] args) throws SBOLValidationException, SBOLConversionException, IOException {
+    public void generateCSV() throws SBOLValidationException, SBOLConversionException, IOException {
         String path = "./examples/sbol_files/gene_cassette_sbol2.rdf";
 
         SBOLDocument doc = SBOLReader.read(path);

@@ -27,18 +27,6 @@ public class parts_example {
             System.out.println(comp.getDisplayId());
         }
     }
-
-    public static void main(String[] args){
-
-        try{
-            parts_example example = new parts_example();
-            example.generateCSV();
-        }
-        catch(Exception e){
-            e.printStackTrace();
-        }
-
-    }
 }
 
 
