@@ -1,0 +1,181 @@
+<?xml version="1.0" ?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:sbol="http://sbols.org/v2#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:so="http://purl.obolibrary.org/obo/" xmlns:prov="http://www.w3.org/ns/prov#" xmlns:om="http://www.ontology-of-units-of-measure.org/resource/om-2/">
+  <sbol:ComponentDefinition rdf:about="http://sbolstandard.org/examples/Design/SA_2/subcomponent_3">
+    <sbol:persistentIdentity rdf:resource="http://sbolstandard.org/examples/Design/SA_2/subcomponent_3"/>
+    <sbol:displayId>RBS_1</sbol:displayId>
+    <sbol:type rdf:resource="http://www.biopax.org/release/biopax-level3.owl#DnaRegion"/>
+    <sbol:type rdf:resource="http://identifiers.org/so/SO:0000987"/>
+    <sbol:role rdf:resource="http://identifiers.org/so/SO:0000552"/>
+    <sbol:sequence rdf:resource="http://sbolstandard.org/examples/Design/SA_2/subcomponent_3/Seq_3"/>
+  </sbol:ComponentDefinition>
+  <sbol:ComponentDefinition rdf:about="http://sbolstandard.org/examples/Design/SA_3/subcomponent_4">
+    <sbol:persistentIdentity rdf:resource="http://sbolstandard.org/examples/Design/SA_3/subcomponent_4"/>
+    <sbol:displayId>Coding_sequence_1</sbol:displayId>
+    <sbol:type rdf:resource="http://www.biopax.org/release/biopax-level3.owl#DnaRegion"/>
+    <sbol:type rdf:resource="http://identifiers.org/so/SO:0000987"/>
+    <sbol:role rdf:resource="http://identifiers.org/so/SO:0000316"/>
+    <sbol:sequence rdf:resource="http://sbolstandard.org/examples/Design/SA_3/subcomponent_4/Seq_4"/>
+  </sbol:ComponentDefinition>
+  <sbol:ComponentDefinition rdf:about="http://sbolstandard.org/examples/Design/SA_1/subcomponent_1">
+    <sbol:persistentIdentity rdf:resource="http://sbolstandard.org/examples/Design/SA_1/subcomponent_1"/>
+    <sbol:displayId>Promoter_1</sbol:displayId>
+    <sbol:type rdf:resource="http://www.biopax.org/release/biopax-level3.owl#DnaRegion"/>
+    <sbol:type rdf:resource="http://identifiers.org/so/SO:0000987"/>
+    <sbol:role rdf:resource="http://identifiers.org/so/SO:0000167"/>
+    <sbol:sequence rdf:resource="http://sbolstandard.org/examples/Design/SA_1/subcomponent_1/Seq_1"/>
+  </sbol:ComponentDefinition>
+  <sbol:ComponentDefinition rdf:about="http://sbolstandard.org/examples/Design/SA_4/subcomponent_5">
+    <sbol:persistentIdentity rdf:resource="http://sbolstandard.org/examples/Design/SA_4/subcomponent_5"/>
+    <sbol:displayId>Terminator_1</sbol:displayId>
+    <sbol:type rdf:resource="http://www.biopax.org/release/biopax-level3.owl#DnaRegion"/>
+    <sbol:type rdf:resource="http://identifiers.org/so/SO:0000987"/>
+    <sbol:role rdf:resource="http://identifiers.org/so/SO:0000139"/>
+    <sbol:sequence rdf:resource="http://sbolstandard.org/examples/Design/SA_4/subcomponent_5/Seq_5"/>
+  </sbol:ComponentDefinition>
+  <sbol:ComponentDefinition rdf:about="http://sbolstandard.org/examples/Design">
+    <sbol:persistentIdentity rdf:resource="http://sbolstandard.org/examples/Design"/>
+    <sbol:displayId>A_gene_cassette</sbol:displayId>
+    <sbol:type rdf:resource="http://www.biopax.org/release/biopax-level3.owl#DnaRegion"/>
+    <sbol:type rdf:resource="http://identifiers.org/so/SO:0000987"/>
+    <sbol:role rdf:resource="http://identifiers.org/so/SO:0000546"/>
+    <sbol:component>
+      <sbol:Component rdf:about="http://sbolstandard.org/examples/Design/component2">
+        <sbol:persistentIdentity rdf:resource="http://sbolstandard.org/examples/Design/component2"/>
+        <sbol:displayId>component2</sbol:displayId>
+        <sbol:access rdf:resource="http://sbols.org/v2#public"/>
+        <sbol:definition rdf:resource="http://sbolstandard.org/examples/Design/SA_3/subcomponent_4"/>
+      </sbol:Component>
+    </sbol:component>
+    <sbol:component>
+      <sbol:Component rdf:about="http://sbolstandard.org/examples/Design/component1">
+        <sbol:persistentIdentity rdf:resource="http://sbolstandard.org/examples/Design/component1"/>
+        <sbol:displayId>component1</sbol:displayId>
+        <sbol:access rdf:resource="http://sbols.org/v2#public"/>
+        <sbol:definition rdf:resource="http://sbolstandard.org/examples/Design/SA_2/subcomponent_3"/>
+      </sbol:Component>
+    </sbol:component>
+    <sbol:component>
+      <sbol:Component rdf:about="http://sbolstandard.org/examples/Design/component3">
+        <sbol:persistentIdentity rdf:resource="http://sbolstandard.org/examples/Design/component3"/>
+        <sbol:displayId>component3</sbol:displayId>
+        <sbol:access rdf:resource="http://sbols.org/v2#public"/>
+        <sbol:definition rdf:resource="http://sbolstandard.org/examples/Design/SA_4/subcomponent_5"/>
+      </sbol:Component>
+    </sbol:component>
+    <sbol:component>
+      <sbol:Component rdf:about="http://sbolstandard.org/examples/Design/component0">
+        <sbol:persistentIdentity rdf:resource="http://sbolstandard.org/examples/Design/component0"/>
+        <sbol:displayId>component0</sbol:displayId>
+        <sbol:access rdf:resource="http://sbols.org/v2#public"/>
+        <sbol:definition rdf:resource="http://sbolstandard.org/examples/Design/SA_1/subcomponent_1"/>
+      </sbol:Component>
+    </sbol:component>
+    <sbol:sequenceAnnotation>
+      <sbol:SequenceAnnotation rdf:about="http://sbolstandard.org/examples/Design/SA_1">
+        <sbol:persistentIdentity rdf:resource="http://sbolstandard.org/examples/Design/SA_1"/>
+        <sbol:displayId>annotation1</sbol:displayId>
+        <sbol:location>
+          <sbol:Range rdf:about="http://sbolstandard.org/examples/Design/SA_1/range">
+            <sbol:persistentIdentity rdf:resource="http://sbolstandard.org/examples/Design/SA_1/range"/>
+            <sbol:displayId>range</sbol:displayId>
+            <sbol:start>1</sbol:start>
+            <sbol:end>44</sbol:end>
+          </sbol:Range>
+        </sbol:location>
+        <sbol:component rdf:resource="http://sbolstandard.org/examples/Design/component0"/>
+      </sbol:SequenceAnnotation>
+    </sbol:sequenceAnnotation>
+    <sbol:sequenceAnnotation>
+      <sbol:SequenceAnnotation rdf:about="http://sbolstandard.org/examples/Design/SA_4">
+        <sbol:persistentIdentity rdf:resource="http://sbolstandard.org/examples/Design/SA_4"/>
+        <sbol:displayId>annotation4</sbol:displayId>
+        <sbol:location>
+          <sbol:Range rdf:about="http://sbolstandard.org/examples/Design/SA_4/range">
+            <sbol:persistentIdentity rdf:resource="http://sbolstandard.org/examples/Design/SA_4/range"/>
+            <sbol:displayId>range</sbol:displayId>
+            <sbol:start>923</sbol:start>
+            <sbol:end>1025</sbol:end>
+          </sbol:Range>
+        </sbol:location>
+        <sbol:component rdf:resource="http://sbolstandard.org/examples/Design/component3"/>
+      </sbol:SequenceAnnotation>
+    </sbol:sequenceAnnotation>
+    <sbol:sequenceAnnotation>
+      <sbol:SequenceAnnotation rdf:about="http://sbolstandard.org/examples/Design/SA_2">
+        <sbol:persistentIdentity rdf:resource="http://sbolstandard.org/examples/Design/SA_2"/>
+        <sbol:displayId>annotation2</sbol:displayId>
+        <sbol:location>
+          <sbol:Range rdf:about="http://sbolstandard.org/examples/Design/SA_2/range">
+            <sbol:persistentIdentity rdf:resource="http://sbolstandard.org/examples/Design/SA_2/range"/>
+            <sbol:displayId>range</sbol:displayId>
+            <sbol:start>45</sbol:start>
+            <sbol:end>61</sbol:end>
+          </sbol:Range>
+        </sbol:location>
+        <sbol:component rdf:resource="http://sbolstandard.org/examples/Design/component1"/>
+      </sbol:SequenceAnnotation>
+    </sbol:sequenceAnnotation>
+    <sbol:sequenceAnnotation>
+      <sbol:SequenceAnnotation rdf:about="http://sbolstandard.org/examples/Design/SA_3">
+        <sbol:persistentIdentity rdf:resource="http://sbolstandard.org/examples/Design/SA_3"/>
+        <sbol:displayId>annotation3</sbol:displayId>
+        <sbol:location>
+          <sbol:Range rdf:about="http://sbolstandard.org/examples/Design/SA_3/range">
+            <sbol:persistentIdentity rdf:resource="http://sbolstandard.org/examples/Design/SA_3/range"/>
+            <sbol:displayId>range</sbol:displayId>
+            <sbol:start>62</sbol:start>
+            <sbol:end>922</sbol:end>
+          </sbol:Range>
+        </sbol:location>
+        <sbol:component rdf:resource="http://sbolstandard.org/examples/Design/component2"/>
+      </sbol:SequenceAnnotation>
+    </sbol:sequenceAnnotation>
+    <sbol:sequenceConstraint>
+      <sbol:SequenceConstraint rdf:about="http://sbolstandard.org/examples/Design/sequenceConstraint3">
+        <sbol:restriction rdf:resource="http://sbols.org/v2#precedes"/>
+        <sbol:subject rdf:resource="http://sbolstandard.org/examples/Design/component2"/>
+        <sbol:object rdf:resource="http://sbolstandard.org/examples/Design/component3"/>
+      </sbol:SequenceConstraint>
+    </sbol:sequenceConstraint>
+    <sbol:sequenceConstraint>
+      <sbol:SequenceConstraint rdf:about="http://sbolstandard.org/examples/Design/sequenceConstraint1">
+        <sbol:restriction rdf:resource="http://sbols.org/v2#precedes"/>
+        <sbol:subject rdf:resource="http://sbolstandard.org/examples/Design/component0"/>
+        <sbol:object rdf:resource="http://sbolstandard.org/examples/Design/component1"/>
+      </sbol:SequenceConstraint>
+    </sbol:sequenceConstraint>
+    <sbol:sequenceConstraint>
+      <sbol:SequenceConstraint rdf:about="http://sbolstandard.org/examples/Design/sequenceConstraint2">
+        <sbol:restriction rdf:resource="http://sbols.org/v2#precedes"/>
+        <sbol:subject rdf:resource="http://sbolstandard.org/examples/Design/component1"/>
+        <sbol:object rdf:resource="http://sbolstandard.org/examples/Design/component2"/>
+      </sbol:SequenceConstraint>
+    </sbol:sequenceConstraint>
+    <sbol:sequence rdf:resource="http://sbolstandard.org/examples/Design/Seq"/>
+  </sbol:ComponentDefinition>
+  <sbol:Sequence rdf:about="http://sbolstandard.org/examples/Design/SA_3/subcomponent_4/Seq_4">
+    <sbol:persistentIdentity rdf:resource="http://sbolstandard.org/examples/Design/SA_3/subcomponent_4/Seq_4"/>
+    <sbol:elements>ataaaaaagtaacccttaatcatgatggtaaactcaatttaaccttatcgaactgcgttgcaggcattagccctaattagccggggctgaaaggaagaatcactgtctcagatattgagggtatgtctaacctacaccatatagcaagaagttcggactgaacgtgccttcctcctctctacgtcgttaaaggtatataatcggcctgagttagtcccagcattctaatagcgagatatagctggcctcggcttaagtgctaccggtccctttaggccaccttagacttgttggtacacatgactcgtgagtataagccgcgaagataaccttcccagaaatccctgcccaagatgttcaatacatgccttccacacggcctgagcatacggttggtaaatgcgggtggtgtgtacttgtaaatgatggactggtctcagcacgcttaccaatcaagatcccccatgggtgatggcatggaggagcgaatcgcatagaggatgtttaagtaagacgtcgttcgcacttcgaccctataacaactataatttaccttggtacgaagtagctgaaaaacgataactgacaagagtggttccgcggatattatgatccaacacattaccggaacgagtaaggatgccaacgggttcgataactggcgcagtctggtcttctcgctgtgaagcgccgcactgcgctacataggggatgctgtcatgccttaatgttttagtaagcaccaaatgggacttatgacaggcagagccacagtatacgtgtcctccgtaacgaagtagacacctctttataatcgccacaagatagaatgctgtaataggtatatcagtatccgcggaa</sbol:elements>
+    <sbol:encoding rdf:resource="http://www.chem.qmul.ac.uk/iubmb/misc/naseq.html"/>
+  </sbol:Sequence>
+  <sbol:Sequence rdf:about="http://sbolstandard.org/examples/Design/SA_2/subcomponent_3/Seq_3">
+    <sbol:persistentIdentity rdf:resource="http://sbolstandard.org/examples/Design/SA_2/subcomponent_3/Seq_3"/>
+    <sbol:elements>aaaagtcggtggccgca</sbol:elements>
+    <sbol:encoding rdf:resource="http://www.chem.qmul.ac.uk/iubmb/misc/naseq.html"/>
+  </sbol:Sequence>
+  <sbol:Sequence rdf:about="http://sbolstandard.org/examples/Design/SA_4/subcomponent_5/Seq_5">
+    <sbol:persistentIdentity rdf:resource="http://sbolstandard.org/examples/Design/SA_4/subcomponent_5/Seq_5"/>
+    <sbol:elements>tggaaaccttatctaaagcagtgcttgccatagacgagtgcacattcctggcagctaaggaggcggtagctcaggagtactgggaagttattgtacttccgtc</sbol:elements>
+    <sbol:encoding rdf:resource="http://www.chem.qmul.ac.uk/iubmb/misc/naseq.html"/>
+  </sbol:Sequence>
+  <sbol:Sequence rdf:about="http://sbolstandard.org/examples/Design/SA_1/subcomponent_1/Seq_1">
+    <sbol:persistentIdentity rdf:resource="http://sbolstandard.org/examples/Design/SA_1/subcomponent_1/Seq_1"/>
+    <sbol:elements>gtaatcctatgatcgagcacacggcgcaggtcttgtccgaggga</sbol:elements>
+    <sbol:encoding rdf:resource="http://www.chem.qmul.ac.uk/iubmb/misc/naseq.html"/>
+  </sbol:Sequence>
+  <sbol:Sequence rdf:about="http://sbolstandard.org/examples/Design/Seq">
+    <sbol:persistentIdentity rdf:resource="http://sbolstandard.org/examples/Design/Seq"/>
+    <sbol:elements>gtaatcctatgatcgagcacacggcgcaggtcttgtccgagggaaaaagtcggtggccgcaataaaaaagtaacccttaatcatgatggtaaactcaatttaaccttatcgaactgcgttgcaggcattagccctaattagccggggctgaaaggaagaatcactgtctcagatattgagggtatgtctaacctacaccatatagcaagaagttcggactgaacgtgccttcctcctctctacgtcgttaaaggtatataatcggcctgagttagtcccagcattctaatagcgagatatagctggcctcggcttaagtgctaccggtccctttaggccaccttagacttgttggtacacatgactcgtgagtataagccgcgaagataaccttcccagaaatccctgcccaagatgttcaatacatgccttccacacggcctgagcatacggttggtaaatgcgggtggtgtgtacttgtaaatgatggactggtctcagcacgcttaccaatcaagatcccccatgggtgatggcatggaggagcgaatcgcatagaggatgtttaagtaagacgtcgttcgcacttcgaccctataacaactataatttaccttggtacgaagtagctgaaaaacgataactgacaagagtggttccgcggatattatgatccaacacattaccggaacgagtaaggatgccaacgggttcgataactggcgcagtctggtcttctcgctgtgaagcgccgcactgcgctacataggggatgctgtcatgccttaatgttttagtaagcaccaaatgggacttatgacaggcagagccacagtatacgtgtcctccgtaacgaagtagacacctctttataatcgccacaagatagaatgctgtaataggtatatcagtatccgcggaatggaaaccttatctaaagcagtgcttgccatagacgagtgcacattcctggcagctaaggaggcggtagctcaggagtactgggaagttattgtacttccgtc</sbol:elements>
+    <sbol:encoding rdf:resource="http://www.chem.qmul.ac.uk/iubmb/misc/naseq.html"/>
+  </sbol:Sequence>
+</rdf:RDF>
