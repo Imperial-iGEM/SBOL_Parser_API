@@ -3,6 +3,7 @@
   <sbol:ComponentDefinition rdf:about="http://www.dummy.org/cd/dummyBackbone">
     <sbol:persistentIdentity rdf:resource="http://www.dummy.org/cd/dummyBackbone"/>
     <sbol:displayId>dummyBackbone</sbol:displayId>
+    <dcterms:title>dummyBackbone</dcterms:title>
     <dcterms:description>Dummy destination vector backbone</dcterms:description>
     <sbol:type rdf:resource="http://www.biopax.org/release/biopax-level3.owl#DnaRegion"/>
     <sbol:role rdf:resource="http://identifiers.org/so/SO:0000755"/>

@@ -25,6 +25,7 @@ public class backboneOuput {
         );
 
         dummyBackbone.addRole(URI.create("http://identifiers.org/so/SO:0000755")); //plasmid_vector
+        dummyBackbone.setName("dummyBackbone");
         dummyBackbone.setDescription("Dummy destination vector backbone");
 
         return document;
