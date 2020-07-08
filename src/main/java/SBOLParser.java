@@ -1,6 +1,7 @@
 import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.sbolstandard.core2.*;
 
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URI;
 import java.util.*;
@@ -126,25 +127,44 @@ public class SBOLParser {
             //Fetch new list of Components
             components = cd.getSortedComponents();
 
-            //Check if Components list is empty (especially for Component Definitions with only Sequence Annotations)
+            //Initialize FileWriter for construct csv
+            //If SBOL file contains multiple Component Definitions, more than 1 csv file will be made?
+            FileWriter constructWriter = new FileWriter("./examples/sbol_files/constructs.csv");
+            //Write Header
+            constructWriter.append("Well");
+
+            for(int i=1;i<components.size()/2+1;i++){
+                constructWriter.append(",");
+                constructWriter.append("Linker "+i);
+                constructWriter.append(",");
+                constructWriter.append("Part "+i);
+            }
+            constructWriter.append("\n");
+
+            //Write Well
+            //Only one well can be filled?
+            constructWriter.append("A1");
+
+            //Cannot enumerate Component Definitions with only Sequnece Annotations
             //In future, generate Component from Sequence Annotations if converted from Genbank, or ignore these types of files (perform validation)
-            if (components.isEmpty()) {
-                //Derive names of parts from Sequence Annotations
-                for (SequenceAnnotation sa : sequenceAnnotations) {
-                    System.out.println(sa.getName());
-                }
-            } else {
-                for (Component c : components) {
-                    //Derive name of Component from Component Definition
-                    ComponentDefinition componentDefinition = c.getDefinition();
-                    //If Component Definition is unnamed, derive name from Display ID
-                    if (componentDefinition.getName() == null) {
-                        System.out.println(componentDefinition.getDisplayId());
-                    } else {
-                        System.out.println(componentDefinition.getName());
-                    }
+            //Need to catch if number of constructs exceed number of wells
+            for (Component c : components) {
+                //Derive name of Component from Component Definition
+                ComponentDefinition componentDefinition = c.getDefinition();
+                //If Component Definition is unnamed, derive name from Display ID
+                if (componentDefinition.getName() == null) {
+                    constructWriter.append(",");
+                    constructWriter.append(componentDefinition.getDisplayId());
+                    System.out.println(componentDefinition.getDisplayId());
+                } else {
+                    constructWriter.append(",");
+                    constructWriter.append(componentDefinition.getName());
+                    System.out.println(componentDefinition.getDisplayId());
                 }
             }
+
+            constructWriter.flush();
+            constructWriter.close();
         }
     }
 }
