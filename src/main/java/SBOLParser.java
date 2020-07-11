@@ -1,5 +1,6 @@
 import org.sbolstandard.core2.*;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URI;
@@ -22,6 +23,16 @@ public class SBOLParser {
             }
             alphabet++;
         }
+    }
+
+    private Boolean isLinker(Component c, SBOLDocument linkers){
+        boolean isLinker = false;
+        //Get Set of all Component Definitions in linkers Document
+        Set<ComponentDefinition> cdLinkers = linkers.getComponentDefinitions();
+        if(cdLinkers.contains(c.getDefinition())){
+            isLinker = true;
+        }
+        return isLinker;
     }
 
     /**
@@ -119,10 +130,9 @@ public class SBOLParser {
      * @param cd Root Component Definition containing current design
      * @param components List of Components in Root Component Definition
      * @param backbone SBOL Document containing backbones
-     * @param linkers SBOL Document containing linkers
      * @throws SBOLValidationException Throws exception if any SBOL Validation Exceptions are encountered.
      */
-    private void insertPlasmid(ComponentDefinition cd, List<Component> components, SBOLDocument doc, SBOLDocument backbone, SBOLDocument linkers) throws SBOLValidationException{
+    private void insertPlasmid(ComponentDefinition cd, List<Component> components, SBOLDocument doc, SBOLDocument backbone) throws SBOLValidationException{
         //Get first component from the list of components
         Component firstComponent = components.get(0);
 
@@ -153,7 +163,7 @@ public class SBOLParser {
      * @throws SBOLValidationException Throws exception if any SBOL Validation Exceptions are encountered.
      */
     private Boolean validatePlasmid(ComponentDefinition cd) throws SBOLValidationException{
-                Boolean containsPlasmid = false;
+        boolean containsPlasmid = false;
         Set<Component> components = cd.getComponents();
         for(Component c: components){
             Set<URI> roles = c.getDefinition().getRoles();
@@ -225,7 +235,7 @@ public class SBOLParser {
      *
      * @param minNumberOfParts Minimum number of parts required to build all designs in SBOL Document
      * @return FileWriter for construct csv
-     * @throws IOException Throws exception if any SBOL Validation Exceptions are encountered.
+     * @throws IOException Throws exception if any IO Exceptions are encountered.
      */
     private FileWriter createConstructCsvHeader(int minNumberOfParts) throws IOException{
         //Initialize FileWriter for construct csv
@@ -245,6 +255,23 @@ public class SBOLParser {
     }
 
     /**
+     * Instantiates parts/linkers csv file with headers
+     *
+     * @return FileWriter for parts/linkers csv
+     * @throws IOException Throws exception if any IO Exceptions are encountered.
+     */
+    private FileWriter createPartsLinkersCsvHeader() throws IOException{
+        //Initialize FileWriter for parts/linkers csv
+        FileWriter partsLinkersWriter = new FileWriter("./examples/sbol_files/parts_linkers.csv");
+        partsLinkersWriter.append("Part/linker");
+        partsLinkersWriter.append(",");
+        partsLinkersWriter.append("Well");
+        partsLinkersWriter.append("Part concentration (ng/uL)");
+        partsLinkersWriter.append("\n");
+        return partsLinkersWriter;
+    }
+
+    /**
      * Generates contruct csv for DNABot using SBOL Document as input
      *
      * @param doc SBOL Document containing construct designs
@@ -252,7 +279,7 @@ public class SBOLParser {
      * @throws SBOLConversionException Throws exception if any SBOL Conversion Exceptions are encountered.
      * @throws IOException Throws exception if any IO Exceptions are encountered.
      */
-    public void generateConstructCsv(SBOLDocument doc) throws SBOLValidationException, SBOLConversionException, IOException{
+    public void generateCsv(SBOLDocument doc) throws SBOLValidationException, SBOLConversionException, IOException{
        //Instantiate well index
         int well_index = 1;
 
@@ -276,6 +303,12 @@ public class SBOLParser {
         //Instantiate construct csv with header
         FileWriter constructCsv = createConstructCsvHeader(minNumberOfParts);
 
+        //Instantiate parts/linkers csv with header
+        FileWriter partsLinkersCsv = createPartsLinkersCsvHeader();
+
+        //Instantiate List of all components across all designs
+        HashSet<Component> allComponents = new HashSet<Component>();
+
         //Iterate through each Root Component Definition from the Set of Component Definitions
         for(ComponentDefinition cd:componentDefs){
             //Display name of Root Component Definition
@@ -290,27 +323,30 @@ public class SBOLParser {
 
             //If Root Component Definition does not contain a plasmid vector, insert plasmid vector at the start of the list of Components
             if(!containsPlasmid){
-                insertPlasmid(cd,components,doc,dummyBackbone,linkers);
+                insertPlasmid(cd,components,doc,dummyBackbone);
             }
 
             //Insert Linkers
+            //Need to implement validation on whether construct already contains linkers
             insertLinkers(cd,components,doc,linkers);
 
             //Fetch new List of Components
             components = cd.getSortedComponents();
 
+            //Generate construct csv
             //Currently, each Root Component Definition only includes 1 construct
             //The subsequent code for writing construct csv may need changes to write Combinatorial Derivations
 
             //Write Well
             constructCsv.append(WELLS.get(well_index));
 
-            //Append List of Components into csv
+            //Append List of Components into construct csv
             for(Component c: components){
                 constructCsv.append(",");
                 constructCsv.append(display(c));
                 System.out.println(display(c));
             }
+            constructCsv.append("\n");
             well_index++;
 
             //Break out if the plate is full
@@ -323,19 +359,75 @@ public class SBOLParser {
 
             constructCsv.flush();
             constructCsv.close();
+
+            //Add parts/linkers to List of all Components
+            allComponents.addAll(components);
         }
+
+        //Reset well index for parts/linkers csv
+        well_index = 1;
+
+        //Write parts/linkers to csv
+//        for(Component c:allComponents){
+//            //Validate whether Component is a linker against Linker SBOL Document
+//            if(isLinker(c,linkers)){
+//                //If Component is a linker, include prefix and suffix entries for each linker
+//                partsLinkersCsv.append(display(c)).append("-S");
+//                partsLinkersCsv.append(",");
+//                partsLinkersCsv.append(WELLS.get(well_index));
+//                partsLinkersCsv.append("\n");
+//                well_index++;
+//                partsLinkersCsv.append(display(c)).append("-P");
+//                partsLinkersCsv.append(",");
+//                partsLinkersCsv.append(WELLS.get(well_index));
+//                partsLinkersCsv.append("\n");
+//                well_index++;
+//            }
+//            else{
+//                partsLinkersCsv.append(display(c));
+//                partsLinkersCsv.append(",");
+//                partsLinkersCsv.append(WELLS.get(well_index));
+//                partsLinkersCsv.append("\n");
+//                well_index++;
+//            }
+//        }
+
+        //Sort all Components alphabetically
+        TreeSet<String> sortedAllComponents = new TreeSet<String>();
+        for(Component c: allComponents){
+            //If Component is a linker, include prefix and suffix entries for the linker
+            if(isLinker(c,linkers)){
+                sortedAllComponents.add(display(c)+"-S");
+                sortedAllComponents.add(display(c)+"-P");
+            }
+            else{
+                sortedAllComponents.add(display(c));
+            }
+        }
+
+        //Write parts/linkers to csv
+        for(String s: sortedAllComponents){
+            partsLinkersCsv.append(s);
+            partsLinkersCsv.append(",");
+            partsLinkersCsv.append(WELLS.get(well_index));
+            partsLinkersCsv.append("\n");
+            well_index++;
+        }
+
+        partsLinkersCsv.flush();
+        partsLinkersCsv.close();
     }
 
     /**
      * Generates construct csv for a specific Component Definition for DNABot using SBOL Document and Component Definition URI as input
      *
      * @param doc SBOL Document containing construct designs
-     * @param cdURI
+     * @param cdURI URI of Component Definition containing design
      * @throws SBOLValidationException Throws exception if any SBOL Validation Exceptions are encountered.
      * @throws SBOLConversionException Throws exception if any SBOL Conversion Exceptions are encountered.
      * @throws IOException Throws exception if any IO Exceptions are encountered.
      */
-    public void generateConstructCsv(SBOLDocument doc, URI cdURI) throws SBOLValidationException, SBOLConversionException, IOException{
+    public void generateCsv(SBOLDocument doc, URI cdURI) throws SBOLValidationException, SBOLConversionException, IOException{
 
     }
 }
