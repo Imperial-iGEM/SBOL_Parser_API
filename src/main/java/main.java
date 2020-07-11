@@ -11,7 +11,7 @@ class main {
 
         try{
             SBOLParser parser = new SBOLParser();
-            parser.generateCsv(doc);
+            parser.generateConstructCsv(doc);
         }
         catch(Exception e){
             e.printStackTrace();
