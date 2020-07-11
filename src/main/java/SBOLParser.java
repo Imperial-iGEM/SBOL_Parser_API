@@ -266,6 +266,7 @@ public class SBOLParser {
         partsLinkersWriter.append("Part/linker");
         partsLinkersWriter.append(",");
         partsLinkersWriter.append("Well");
+        partsLinkersWriter.append(",");
         partsLinkersWriter.append("Part concentration (ng/uL)");
         partsLinkersWriter.append("\n");
         return partsLinkersWriter;
