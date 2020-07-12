@@ -118,9 +118,9 @@ public class SBOLParser {
             else{
                 break;
             }
-            if(components.size()-2>max_linkers){
-                System.out.println("Number of parts exceeds number of available linkers. Please include more linkers or reduce the number of parts to be assembled.");
-            }
+        }
+        if(components.size()-2>max_linkers){
+            System.out.println("Number of parts exceeds number of available linkers. Please include more linkers or reduce the number of parts to be assembled.");
         }
     }
 
