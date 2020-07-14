@@ -25,6 +25,42 @@ public class SBOLParser {
         }
     }
 
+    /**
+     * Alternative method for obtaining root Component Definitions, treats variants as child Components of corresponding template Component Definition
+     *
+     * @param doc SBOL Document containing designs
+     * @return Set of root Component Definitions
+     */
+    private Set<ComponentDefinition> getRootCds(SBOLDocument doc){
+        Set<ComponentDefinition> componentDefs = doc.getComponentDefinitions();
+        for (ComponentDefinition componentDefinition : doc.getComponentDefinitions()) {
+            for (Component component : componentDefinition.getComponents()) {
+                ComponentDefinition childDefinition = component.getDefinition();
+                if (childDefinition != null && componentDefs.contains(childDefinition)) {
+                    componentDefs.remove(childDefinition);
+                }
+            }
+        }
+        for (CombinatorialDerivation combinatorialDerivation : doc.getCombinatorialDerivations()){
+            for (VariableComponent variableComponent : combinatorialDerivation.getVariableComponents()){
+                for(ComponentDefinition childDefinition : variableComponent.getVariants()){
+                    if (childDefinition != null && componentDefs.contains(childDefinition)) {
+                        componentDefs.remove(childDefinition);
+                    }
+                }
+            }
+        }
+
+        return componentDefs;
+    }
+
+    /**
+     * Checks whether a given Component is a Linker against a collection of linkers specified in an SBOL Document from which the linkers were obtained.
+     *
+     * @param c Component to check
+     * @param linkers SBOL Document containing linkers that were inserted into the current design
+     * @return {@code true} if component is a linker, {@code false} otherwise
+     */
     private Boolean isLinker(Component c, SBOLDocument linkers){
         boolean isLinker = false;
         //Get Set of all Component Definitions in linkers Document
@@ -285,7 +321,7 @@ public class SBOLParser {
         int well_index = 1;
 
         //Obtain set of Root Component Definitions
-        Set<ComponentDefinition> componentDefs = doc.getRootComponentDefinitions();
+        Set<ComponentDefinition> componentDefs = getRootCds(doc);
 
         //Display number of Root Component Definitions
         Integer numberOfRootCDs = componentDefs.size();
