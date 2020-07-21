@@ -1,0 +1,781 @@
+<?xml version="1.0" ?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:gbConv="http://sbols.org/genBankConversion#" xmlns:sbol="http://sbols.org/v2#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:genbank="http://www.ncbi.nlm.nih.gov/genbank#" xmlns:prov="http://www.w3.org/ns/prov#" xmlns:om="http://www.ontology-of-units-of-measure.org/resource/om-2/">
+  <sbol:ComponentDefinition rdf:about="http://sbols.org/Golden_Gate_2_tier_demo_1">
+    <sbol:persistentIdentity rdf:resource="http://sbols.org/Golden_Gate_2_tier_demo_1"/>
+    <sbol:displayId>Golden_Gate_2_tier_demo_1</sbol:displayId>
+    <dcterms:description>.</dcterms:description>
+    <genbank:locus>Golden Gate 2-tier demo 1</genbank:locus>
+    <genbank:molecule>ds-DNA</genbank:molecule>
+    <genbank:date>27-FEB-2019</genbank:date>
+    <sbol:type rdf:resource="http://www.biopax.org/release/biopax-level3.owl#DnaRegion"/>
+    <sbol:type rdf:resource="http://identifiers.org/so/SO:0000988"/>
+    <sbol:role rdf:resource="http://identifiers.org/so/SO:0000804"/>
+    <sbol:sequenceAnnotation>
+      <sbol:SequenceAnnotation rdf:about="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation16">
+        <sbol:persistentIdentity rdf:resource="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation16"/>
+        <sbol:displayId>annotation16</sbol:displayId>
+        <dcterms:title>PthrC</dcterms:title>
+        <gbConv:label>PthrC</gbConv:label>
+        <gbConv:ApEinfo_revcolor>#f8d3a9</gbConv:ApEinfo_revcolor>
+        <gbConv:ApEinfo_fwdcolor>#f8d3a9</gbConv:ApEinfo_fwdcolor>
+        <sbol:role rdf:resource="http://identifiers.org/so/SO:0001411"/>
+        <sbol:location>
+          <sbol:Range rdf:about="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation16/range">
+            <sbol:persistentIdentity rdf:resource="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation16/range"/>
+            <sbol:displayId>range</sbol:displayId>
+            <sbol:start>5861</sbol:start>
+            <sbol:end>6031</sbol:end>
+            <sbol:orientation rdf:resource="http://sbols.org/v2#inline"/>
+          </sbol:Range>
+        </sbol:location>
+      </sbol:SequenceAnnotation>
+    </sbol:sequenceAnnotation>
+    <sbol:sequenceAnnotation>
+      <sbol:SequenceAnnotation rdf:about="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation15">
+        <sbol:persistentIdentity rdf:resource="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation15"/>
+        <sbol:displayId>annotation15</sbol:displayId>
+        <dcterms:title>tyrA\mutant</dcterms:title>
+        <gbConv:label>tyrA\mutant</gbConv:label>
+        <gbConv:ApEinfo_revcolor>#c6c9d1</gbConv:ApEinfo_revcolor>
+        <gbConv:ApEinfo_fwdcolor>#c6c9d1</gbConv:ApEinfo_fwdcolor>
+        <sbol:role rdf:resource="http://identifiers.org/so/SO:0000316"/>
+        <sbol:location>
+          <sbol:Range rdf:about="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation15/range">
+            <sbol:persistentIdentity rdf:resource="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation15/range"/>
+            <sbol:displayId>range</sbol:displayId>
+            <sbol:start>8887</sbol:start>
+            <sbol:end>10002</sbol:end>
+            <sbol:orientation rdf:resource="http://sbols.org/v2#inline"/>
+          </sbol:Range>
+        </sbol:location>
+      </sbol:SequenceAnnotation>
+    </sbol:sequenceAnnotation>
+    <sbol:sequenceAnnotation>
+      <sbol:SequenceAnnotation rdf:about="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation30">
+        <sbol:persistentIdentity rdf:resource="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation30"/>
+        <sbol:displayId>annotation30</sbol:displayId>
+        <dcterms:title>thrL CDS</dcterms:title>
+        <gbConv:label>thrL CDS</gbConv:label>
+        <gbConv:ApEinfo_revcolor>#75c6a9</gbConv:ApEinfo_revcolor>
+        <gbConv:ApEinfo_fwdcolor>#75c6a9</gbConv:ApEinfo_fwdcolor>
+        <sbol:role rdf:resource="http://identifiers.org/so/SO:0000316"/>
+        <sbol:location>
+          <sbol:Range rdf:about="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation30/range">
+            <sbol:persistentIdentity rdf:resource="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation30/range"/>
+            <sbol:displayId>range</sbol:displayId>
+            <sbol:start>196</sbol:start>
+            <sbol:end>261</sbol:end>
+            <sbol:orientation rdf:resource="http://sbols.org/v2#inline"/>
+          </sbol:Range>
+        </sbol:location>
+      </sbol:SequenceAnnotation>
+    </sbol:sequenceAnnotation>
+    <sbol:sequenceAnnotation>
+      <sbol:SequenceAnnotation rdf:about="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation6">
+        <sbol:persistentIdentity rdf:resource="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation6"/>
+        <sbol:displayId>annotation6</sbol:displayId>
+        <dcterms:title>PAC(P15A\ori\)</dcterms:title>
+        <gbConv:label>PAC(P15A\ori\)</gbConv:label>
+        <gbConv:ApEinfo_revcolor>#c7b0e3</gbConv:ApEinfo_revcolor>
+        <gbConv:ApEinfo_fwdcolor>#c7b0e3</gbConv:ApEinfo_fwdcolor>
+        <sbol:role rdf:resource="http://identifiers.org/so/SO:0001411"/>
+        <sbol:location>
+          <sbol:Range rdf:about="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation6/range">
+            <sbol:persistentIdentity rdf:resource="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation6/range"/>
+            <sbol:displayId>range</sbol:displayId>
+            <sbol:start>11381</sbol:start>
+            <sbol:end>12293</sbol:end>
+            <sbol:orientation rdf:resource="http://sbols.org/v2#inline"/>
+          </sbol:Range>
+        </sbol:location>
+      </sbol:SequenceAnnotation>
+    </sbol:sequenceAnnotation>
+    <sbol:sequenceAnnotation>
+      <sbol:SequenceAnnotation rdf:about="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation26">
+        <sbol:persistentIdentity rdf:resource="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation26"/>
+        <sbol:displayId>annotation26</sbol:displayId>
+        <dcterms:title>aadA_library_r</dcterms:title>
+        <gbConv:label>aadA_library_r</gbConv:label>
+        <gbConv:ApEinfo_revcolor>#75c6a9</gbConv:ApEinfo_revcolor>
+        <gbConv:ApEinfo_fwdcolor>#75c6a9</gbConv:ApEinfo_fwdcolor>
+        <sbol:role rdf:resource="http://identifiers.org/so/SO:0001411"/>
+        <sbol:location>
+          <sbol:Range rdf:about="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation26/range">
+            <sbol:persistentIdentity rdf:resource="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation26/range"/>
+            <sbol:displayId>range</sbol:displayId>
+            <sbol:start>10481</sbol:start>
+            <sbol:end>10500</sbol:end>
+            <sbol:orientation rdf:resource="http://sbols.org/v2#inline"/>
+          </sbol:Range>
+        </sbol:location>
+      </sbol:SequenceAnnotation>
+    </sbol:sequenceAnnotation>
+    <sbol:sequenceAnnotation>
+      <sbol:SequenceAnnotation rdf:about="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation31">
+        <sbol:persistentIdentity rdf:resource="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation31"/>
+        <sbol:displayId>annotation31</sbol:displayId>
+        <dcterms:title>Ala354-Val</dcterms:title>
+        <gbConv:label>Ala354-Val</gbConv:label>
+        <gbConv:ApEinfo_revcolor>#b1ff67</gbConv:ApEinfo_revcolor>
+        <gbConv:ApEinfo_fwdcolor>#b1ff67</gbConv:ApEinfo_fwdcolor>
+        <sbol:role rdf:resource="http://identifiers.org/so/SO:0001411"/>
+        <sbol:location>
+          <sbol:Range rdf:about="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation31/range">
+            <sbol:persistentIdentity rdf:resource="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation31/range"/>
+            <sbol:displayId>range</sbol:displayId>
+            <sbol:start>9943</sbol:start>
+            <sbol:end>9945</sbol:end>
+            <sbol:orientation rdf:resource="http://sbols.org/v2#inline"/>
+          </sbol:Range>
+        </sbol:location>
+      </sbol:SequenceAnnotation>
+    </sbol:sequenceAnnotation>
+    <sbol:sequenceAnnotation>
+      <sbol:SequenceAnnotation rdf:about="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation25">
+        <sbol:persistentIdentity rdf:resource="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation25"/>
+        <sbol:displayId>annotation25</sbol:displayId>
+        <dcterms:title>aroE </dcterms:title>
+        <gbConv:label>aroE </gbConv:label>
+        <gbConv:ApEinfo_revcolor>#85dae9</gbConv:ApEinfo_revcolor>
+        <gbConv:ApEinfo_fwdcolor>#85dae9</gbConv:ApEinfo_fwdcolor>
+        <sbol:role rdf:resource="http://identifiers.org/so/SO:0000704"/>
+        <sbol:location>
+          <sbol:Range rdf:about="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation25/range">
+            <sbol:persistentIdentity rdf:resource="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation25/range"/>
+            <sbol:displayId>range</sbol:displayId>
+            <sbol:start>2800</sbol:start>
+            <sbol:end>3612</sbol:end>
+            <sbol:orientation rdf:resource="http://sbols.org/v2#inline"/>
+          </sbol:Range>
+        </sbol:location>
+      </sbol:SequenceAnnotation>
+    </sbol:sequenceAnnotation>
+    <sbol:sequenceAnnotation>
+      <sbol:SequenceAnnotation rdf:about="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation14">
+        <sbol:persistentIdentity rdf:resource="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation14"/>
+        <sbol:displayId>annotation14</sbol:displayId>
+        <dcterms:title>T7\terminator</dcterms:title>
+        <gbConv:label>T7\terminator</gbConv:label>
+        <gbConv:ApEinfo_revcolor>#ff9ccd</gbConv:ApEinfo_revcolor>
+        <gbConv:ApEinfo_fwdcolor>#ff9ccd</gbConv:ApEinfo_fwdcolor>
+        <sbol:role rdf:resource="http://identifiers.org/so/SO:0000141"/>
+        <sbol:location>
+          <sbol:Range rdf:about="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation14/range">
+            <sbol:persistentIdentity rdf:resource="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation14/range"/>
+            <sbol:displayId>range</sbol:displayId>
+            <sbol:start>10027</sbol:start>
+            <sbol:end>10154</sbol:end>
+            <sbol:orientation rdf:resource="http://sbols.org/v2#inline"/>
+          </sbol:Range>
+        </sbol:location>
+      </sbol:SequenceAnnotation>
+    </sbol:sequenceAnnotation>
+    <sbol:sequenceAnnotation>
+      <sbol:SequenceAnnotation rdf:about="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation3">
+        <sbol:persistentIdentity rdf:resource="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation3"/>
+        <sbol:displayId>annotation3</sbol:displayId>
+        <dcterms:title>4bp-SE3F</dcterms:title>
+        <gbConv:label>4bp-SE3F</gbConv:label>
+        <gbConv:ApEinfo_revcolor>#d59687</gbConv:ApEinfo_revcolor>
+        <gbConv:ApEinfo_fwdcolor>#d59687</gbConv:ApEinfo_fwdcolor>
+        <sbol:role rdf:resource="http://identifiers.org/so/SO:0001411"/>
+        <sbol:location>
+          <sbol:Range rdf:about="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation3/range">
+            <sbol:persistentIdentity rdf:resource="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation3/range"/>
+            <sbol:displayId>range</sbol:displayId>
+            <sbol:start>10225</sbol:start>
+            <sbol:end>10228</sbol:end>
+            <sbol:orientation rdf:resource="http://sbols.org/v2#inline"/>
+          </sbol:Range>
+        </sbol:location>
+      </sbol:SequenceAnnotation>
+    </sbol:sequenceAnnotation>
+    <sbol:sequenceAnnotation>
+      <sbol:SequenceAnnotation rdf:about="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation4">
+        <sbol:persistentIdentity rdf:resource="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation4"/>
+        <sbol:displayId>annotation4</sbol:displayId>
+        <dcterms:title>Met53-Ile</dcterms:title>
+        <gbConv:label>Met53-Ile</gbConv:label>
+        <gbConv:ApEinfo_revcolor>#ffef86</gbConv:ApEinfo_revcolor>
+        <gbConv:ApEinfo_fwdcolor>#ffef86</gbConv:ApEinfo_fwdcolor>
+        <sbol:role rdf:resource="http://identifiers.org/so/SO:0001411"/>
+        <sbol:location>
+          <sbol:Range rdf:about="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation4/range">
+            <sbol:persistentIdentity rdf:resource="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation4/range"/>
+            <sbol:displayId>range</sbol:displayId>
+            <sbol:start>9040</sbol:start>
+            <sbol:end>9042</sbol:end>
+            <sbol:orientation rdf:resource="http://sbols.org/v2#inline"/>
+          </sbol:Range>
+        </sbol:location>
+      </sbol:SequenceAnnotation>
+    </sbol:sequenceAnnotation>
+    <sbol:sequenceAnnotation>
+      <sbol:SequenceAnnotation rdf:about="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation8">
+        <sbol:persistentIdentity rdf:resource="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation8"/>
+        <sbol:displayId>annotation8</sbol:displayId>
+        <dcterms:title>thrL CDS</dcterms:title>
+        <gbConv:label>thrL CDS</gbConv:label>
+        <gbConv:ApEinfo_revcolor>#75c6a9</gbConv:ApEinfo_revcolor>
+        <gbConv:ApEinfo_fwdcolor>#75c6a9</gbConv:ApEinfo_fwdcolor>
+        <sbol:role rdf:resource="http://identifiers.org/so/SO:0000316"/>
+        <sbol:location>
+          <sbol:Range rdf:about="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation8/range">
+            <sbol:persistentIdentity rdf:resource="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation8/range"/>
+            <sbol:displayId>range</sbol:displayId>
+            <sbol:start>6050</sbol:start>
+            <sbol:end>6115</sbol:end>
+            <sbol:orientation rdf:resource="http://sbols.org/v2#inline"/>
+          </sbol:Range>
+        </sbol:location>
+      </sbol:SequenceAnnotation>
+    </sbol:sequenceAnnotation>
+    <sbol:sequenceAnnotation>
+      <sbol:SequenceAnnotation rdf:about="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation32">
+        <sbol:persistentIdentity rdf:resource="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation32"/>
+        <sbol:displayId>annotation32</sbol:displayId>
+        <dcterms:title>PthrC</dcterms:title>
+        <gbConv:label>PthrC</gbConv:label>
+        <gbConv:ApEinfo_revcolor>#f8d3a9</gbConv:ApEinfo_revcolor>
+        <gbConv:ApEinfo_fwdcolor>#f8d3a9</gbConv:ApEinfo_fwdcolor>
+        <sbol:role rdf:resource="http://identifiers.org/so/SO:0001411"/>
+        <sbol:location>
+          <sbol:Range rdf:about="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation32/range">
+            <sbol:persistentIdentity rdf:resource="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation32/range"/>
+            <sbol:displayId>range</sbol:displayId>
+            <sbol:start>7</sbol:start>
+            <sbol:end>177</sbol:end>
+            <sbol:orientation rdf:resource="http://sbols.org/v2#inline"/>
+          </sbol:Range>
+        </sbol:location>
+      </sbol:SequenceAnnotation>
+    </sbol:sequenceAnnotation>
+    <sbol:sequenceAnnotation>
+      <sbol:SequenceAnnotation rdf:about="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation20">
+        <sbol:persistentIdentity rdf:resource="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation20"/>
+        <sbol:displayId>annotation20</sbol:displayId>
+        <dcterms:title>N31</dcterms:title>
+        <gbConv:label>N31</gbConv:label>
+        <gbConv:ApEinfo_revcolor>#f58a5e</gbConv:ApEinfo_revcolor>
+        <gbConv:ApEinfo_fwdcolor>#f58a5e</gbConv:ApEinfo_fwdcolor>
+        <sbol:role rdf:resource="http://identifiers.org/so/SO:0001411"/>
+        <sbol:location>
+          <sbol:Range rdf:about="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation20/range">
+            <sbol:persistentIdentity rdf:resource="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation20/range"/>
+            <sbol:displayId>range</sbol:displayId>
+            <sbol:start>10003</sbol:start>
+            <sbol:end>10023</sbol:end>
+            <sbol:orientation rdf:resource="http://sbols.org/v2#inline"/>
+          </sbol:Range>
+        </sbol:location>
+      </sbol:SequenceAnnotation>
+    </sbol:sequenceAnnotation>
+    <sbol:sequenceAnnotation>
+      <sbol:SequenceAnnotation rdf:about="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation1">
+        <sbol:persistentIdentity rdf:resource="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation1"/>
+        <sbol:displayId>annotation1</sbol:displayId>
+        <dcterms:title>aroG\mutant</dcterms:title>
+        <gbConv:label>aroG\mutant</gbConv:label>
+        <gbConv:ApEinfo_revcolor>#ffef86</gbConv:ApEinfo_revcolor>
+        <gbConv:ApEinfo_fwdcolor>#ffef86</gbConv:ApEinfo_fwdcolor>
+        <sbol:role rdf:resource="http://identifiers.org/so/SO:0000316"/>
+        <sbol:location>
+          <sbol:Range rdf:about="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation1/range">
+            <sbol:persistentIdentity rdf:resource="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation1/range"/>
+            <sbol:displayId>range</sbol:displayId>
+            <sbol:start>6240</sbol:start>
+            <sbol:end>7286</sbol:end>
+            <sbol:orientation rdf:resource="http://sbols.org/v2#inline"/>
+          </sbol:Range>
+        </sbol:location>
+      </sbol:SequenceAnnotation>
+    </sbol:sequenceAnnotation>
+    <sbol:sequenceAnnotation>
+      <sbol:SequenceAnnotation rdf:about="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation33">
+        <sbol:persistentIdentity rdf:resource="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation33"/>
+        <sbol:displayId>annotation33</sbol:displayId>
+        <dcterms:title>N31</dcterms:title>
+        <gbConv:label>N31</gbConv:label>
+        <gbConv:ApEinfo_revcolor>#f58a5e</gbConv:ApEinfo_revcolor>
+        <gbConv:ApEinfo_fwdcolor>#f58a5e</gbConv:ApEinfo_fwdcolor>
+        <sbol:role rdf:resource="http://identifiers.org/so/SO:0001411"/>
+        <sbol:location>
+          <sbol:Range rdf:about="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation33/range">
+            <sbol:persistentIdentity rdf:resource="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation33/range"/>
+            <sbol:displayId>range</sbol:displayId>
+            <sbol:start>5634</sbol:start>
+            <sbol:end>5654</sbol:end>
+            <sbol:orientation rdf:resource="http://sbols.org/v2#inline"/>
+          </sbol:Range>
+        </sbol:location>
+      </sbol:SequenceAnnotation>
+    </sbol:sequenceAnnotation>
+    <sbol:sequenceAnnotation>
+      <sbol:SequenceAnnotation rdf:about="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation13">
+        <sbol:persistentIdentity rdf:resource="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation13"/>
+        <sbol:displayId>annotation13</sbol:displayId>
+        <dcterms:title>N36</dcterms:title>
+        <gbConv:label>N36</gbConv:label>
+        <gbConv:ApEinfo_revcolor>#d59687</gbConv:ApEinfo_revcolor>
+        <gbConv:ApEinfo_fwdcolor>#d59687</gbConv:ApEinfo_fwdcolor>
+        <sbol:role rdf:resource="http://identifiers.org/so/SO:0001411"/>
+        <sbol:location>
+          <sbol:Range rdf:about="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation13/range">
+            <sbol:persistentIdentity rdf:resource="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation13/range"/>
+            <sbol:displayId>range</sbol:displayId>
+            <sbol:start>10224</sbol:start>
+            <sbol:end>10229</sbol:end>
+            <sbol:orientation rdf:resource="http://sbols.org/v2#inline"/>
+          </sbol:Range>
+        </sbol:location>
+      </sbol:SequenceAnnotation>
+    </sbol:sequenceAnnotation>
+    <sbol:sequenceAnnotation>
+      <sbol:SequenceAnnotation rdf:about="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation19">
+        <sbol:persistentIdentity rdf:resource="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation19"/>
+        <sbol:displayId>annotation19</sbol:displayId>
+        <dcterms:title>p15_library_f</dcterms:title>
+        <gbConv:label>p15_library_f</gbConv:label>
+        <gbConv:ApEinfo_revcolor>#75c6a9</gbConv:ApEinfo_revcolor>
+        <gbConv:ApEinfo_fwdcolor>#75c6a9</gbConv:ApEinfo_fwdcolor>
+        <sbol:role rdf:resource="http://identifiers.org/so/SO:0001411"/>
+        <sbol:location>
+          <sbol:Range rdf:about="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation19/range">
+            <sbol:persistentIdentity rdf:resource="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation19/range"/>
+            <sbol:displayId>range</sbol:displayId>
+            <sbol:start>12161</sbol:start>
+            <sbol:end>12180</sbol:end>
+            <sbol:orientation rdf:resource="http://sbols.org/v2#inline"/>
+          </sbol:Range>
+        </sbol:location>
+      </sbol:SequenceAnnotation>
+    </sbol:sequenceAnnotation>
+    <sbol:sequenceAnnotation>
+      <sbol:SequenceAnnotation rdf:about="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation7">
+        <sbol:persistentIdentity rdf:resource="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation7"/>
+        <sbol:displayId>annotation7</sbol:displayId>
+        <dcterms:title>tktA</dcterms:title>
+        <gbConv:label>tktA</gbConv:label>
+        <gbConv:ApEinfo_revcolor>#75c6a9</gbConv:ApEinfo_revcolor>
+        <gbConv:ApEinfo_fwdcolor>#75c6a9</gbConv:ApEinfo_fwdcolor>
+        <sbol:role rdf:resource="http://identifiers.org/so/SO:0001411"/>
+        <sbol:location>
+          <sbol:Range rdf:about="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation7/range">
+            <sbol:persistentIdentity rdf:resource="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation7/range"/>
+            <sbol:displayId>range</sbol:displayId>
+            <sbol:start>3648</sbol:start>
+            <sbol:end>5633</sbol:end>
+            <sbol:orientation rdf:resource="http://sbols.org/v2#inline"/>
+          </sbol:Range>
+        </sbol:location>
+      </sbol:SequenceAnnotation>
+    </sbol:sequenceAnnotation>
+    <sbol:sequenceAnnotation>
+      <sbol:SequenceAnnotation rdf:about="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation36">
+        <sbol:persistentIdentity rdf:resource="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation36"/>
+        <sbol:displayId>annotation36</sbol:displayId>
+        <dcterms:title>Sesam8_library_f</dcterms:title>
+        <gbConv:label>Sesam8_library_f</gbConv:label>
+        <gbConv:ApEinfo_revcolor>#9eafd2</gbConv:ApEinfo_revcolor>
+        <gbConv:ApEinfo_fwdcolor>#9eafd2</gbConv:ApEinfo_fwdcolor>
+        <sbol:role rdf:resource="http://identifiers.org/so/SO:0001411"/>
+        <sbol:location>
+          <sbol:Range rdf:about="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation36/range">
+            <sbol:persistentIdentity rdf:resource="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation36/range"/>
+            <sbol:displayId>range</sbol:displayId>
+            <sbol:start>8719</sbol:start>
+            <sbol:end>8739</sbol:end>
+            <sbol:orientation rdf:resource="http://sbols.org/v2#inline"/>
+          </sbol:Range>
+        </sbol:location>
+      </sbol:SequenceAnnotation>
+    </sbol:sequenceAnnotation>
+    <sbol:sequenceAnnotation>
+      <sbol:SequenceAnnotation rdf:about="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation34">
+        <sbol:persistentIdentity rdf:resource="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation34"/>
+        <sbol:displayId>annotation34</sbol:displayId>
+        <dcterms:title>fiveUTR1</dcterms:title>
+        <gbConv:label>fiveUTR1</gbConv:label>
+        <gbConv:ApEinfo_revcolor>#9eafd2</gbConv:ApEinfo_revcolor>
+        <gbConv:ApEinfo_fwdcolor>#9eafd2</gbConv:ApEinfo_fwdcolor>
+        <sbol:role rdf:resource="http://identifiers.org/so/SO:0001411"/>
+        <sbol:location>
+          <sbol:Range rdf:about="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation34/range">
+            <sbol:persistentIdentity rdf:resource="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation34/range"/>
+            <sbol:displayId>range</sbol:displayId>
+            <sbol:start>1</sbol:start>
+            <sbol:end>6</sbol:end>
+            <sbol:orientation rdf:resource="http://sbols.org/v2#inline"/>
+          </sbol:Range>
+        </sbol:location>
+      </sbol:SequenceAnnotation>
+    </sbol:sequenceAnnotation>
+    <sbol:sequenceAnnotation>
+      <sbol:SequenceAnnotation rdf:about="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation0">
+        <sbol:persistentIdentity rdf:resource="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation0"/>
+        <sbol:displayId>annotation0</sbol:displayId>
+        <dcterms:title>RBS1</dcterms:title>
+        <gbConv:label>RBS1</gbConv:label>
+        <gbConv:ApEinfo_revcolor>#f58a5e</gbConv:ApEinfo_revcolor>
+        <gbConv:ApEinfo_fwdcolor>#f58a5e</gbConv:ApEinfo_fwdcolor>
+        <sbol:role rdf:resource="http://identifiers.org/so/SO:0001411"/>
+        <sbol:location>
+          <sbol:Range rdf:about="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation0/range">
+            <sbol:persistentIdentity rdf:resource="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation0/range"/>
+            <sbol:displayId>range</sbol:displayId>
+            <sbol:start>343</sbol:start>
+            <sbol:end>385</sbol:end>
+            <sbol:orientation rdf:resource="http://sbols.org/v2#inline"/>
+          </sbol:Range>
+        </sbol:location>
+      </sbol:SequenceAnnotation>
+    </sbol:sequenceAnnotation>
+    <sbol:sequenceAnnotation>
+      <sbol:SequenceAnnotation rdf:about="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation10">
+        <sbol:persistentIdentity rdf:resource="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation10"/>
+        <sbol:displayId>annotation10</sbol:displayId>
+        <dcterms:title>RBS2stop</dcterms:title>
+        <gbConv:label>RBS2stop</gbConv:label>
+        <gbConv:ApEinfo_revcolor>#84b0dc</gbConv:ApEinfo_revcolor>
+        <gbConv:ApEinfo_fwdcolor>#84b0dc</gbConv:ApEinfo_fwdcolor>
+        <sbol:role rdf:resource="http://identifiers.org/so/SO:0001411"/>
+        <sbol:location>
+          <sbol:Range rdf:about="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation10/range">
+            <sbol:persistentIdentity rdf:resource="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation10/range"/>
+            <sbol:displayId>range</sbol:displayId>
+            <sbol:start>3613</sbol:start>
+            <sbol:end>3647</sbol:end>
+            <sbol:orientation rdf:resource="http://sbols.org/v2#inline"/>
+          </sbol:Range>
+        </sbol:location>
+      </sbol:SequenceAnnotation>
+    </sbol:sequenceAnnotation>
+    <sbol:sequenceAnnotation>
+      <sbol:SequenceAnnotation rdf:about="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation23">
+        <sbol:persistentIdentity rdf:resource="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation23"/>
+        <sbol:displayId>annotation23</sbol:displayId>
+        <dcterms:title>RBS4stop</dcterms:title>
+        <gbConv:label>RBS4stop</gbConv:label>
+        <gbConv:ApEinfo_revcolor>#ffef86</gbConv:ApEinfo_revcolor>
+        <gbConv:ApEinfo_fwdcolor>#ffef86</gbConv:ApEinfo_fwdcolor>
+        <sbol:role rdf:resource="http://identifiers.org/so/SO:0001411"/>
+        <sbol:location>
+          <sbol:Range rdf:about="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation23/range">
+            <sbol:persistentIdentity rdf:resource="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation23/range"/>
+            <sbol:displayId>range</sbol:displayId>
+            <sbol:start>7287</sbol:start>
+            <sbol:end>7324</sbol:end>
+            <sbol:orientation rdf:resource="http://sbols.org/v2#inline"/>
+          </sbol:Range>
+        </sbol:location>
+      </sbol:SequenceAnnotation>
+    </sbol:sequenceAnnotation>
+    <sbol:sequenceAnnotation>
+      <sbol:SequenceAnnotation rdf:about="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation18">
+        <sbol:persistentIdentity rdf:resource="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation18"/>
+        <sbol:displayId>annotation18</sbol:displayId>
+        <dcterms:title>Rho Independed Terminator</dcterms:title>
+        <gbConv:label>Rho Independed Terminator</gbConv:label>
+        <gbConv:ApEinfo_revcolor>#c7b0e3</gbConv:ApEinfo_revcolor>
+        <gbConv:ApEinfo_fwdcolor>#c7b0e3</gbConv:ApEinfo_fwdcolor>
+        <sbol:role rdf:resource="http://identifiers.org/so/SO:0001411"/>
+        <sbol:location>
+          <sbol:Range rdf:about="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation18/range">
+            <sbol:persistentIdentity rdf:resource="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation18/range"/>
+            <sbol:displayId>range</sbol:displayId>
+            <sbol:start>6134</sbol:start>
+            <sbol:end>6170</sbol:end>
+            <sbol:orientation rdf:resource="http://sbols.org/v2#inline"/>
+          </sbol:Range>
+        </sbol:location>
+      </sbol:SequenceAnnotation>
+    </sbol:sequenceAnnotation>
+    <sbol:sequenceAnnotation>
+      <sbol:SequenceAnnotation rdf:about="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation22">
+        <sbol:persistentIdentity rdf:resource="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation22"/>
+        <sbol:displayId>annotation22</sbol:displayId>
+        <dcterms:title>4bp-SE1</dcterms:title>
+        <gbConv:label>4bp-SE1</gbConv:label>
+        <gbConv:ApEinfo_revcolor>#b4abac</gbConv:ApEinfo_revcolor>
+        <gbConv:ApEinfo_fwdcolor>#b4abac</gbConv:ApEinfo_fwdcolor>
+        <sbol:role rdf:resource="http://identifiers.org/so/SO:0001411"/>
+        <sbol:location>
+          <sbol:Range rdf:about="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation22/range">
+            <sbol:persistentIdentity rdf:resource="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation22/range"/>
+            <sbol:displayId>range</sbol:displayId>
+            <sbol:start>2</sbol:start>
+            <sbol:end>5</sbol:end>
+            <sbol:orientation rdf:resource="http://sbols.org/v2#inline"/>
+          </sbol:Range>
+        </sbol:location>
+      </sbol:SequenceAnnotation>
+    </sbol:sequenceAnnotation>
+    <sbol:sequenceAnnotation>
+      <sbol:SequenceAnnotation rdf:about="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation24">
+        <sbol:persistentIdentity rdf:resource="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation24"/>
+        <sbol:displayId>annotation24</sbol:displayId>
+        <dcterms:title>Asp146-Asn</dcterms:title>
+        <gbConv:label>Asp146-Asn</gbConv:label>
+        <gbConv:ApEinfo_revcolor>#d59687</gbConv:ApEinfo_revcolor>
+        <gbConv:ApEinfo_fwdcolor>#d59687</gbConv:ApEinfo_fwdcolor>
+        <sbol:role rdf:resource="http://identifiers.org/so/SO:0001411"/>
+        <sbol:location>
+          <sbol:Range rdf:about="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation24/range">
+            <sbol:persistentIdentity rdf:resource="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation24/range"/>
+            <sbol:displayId>range</sbol:displayId>
+            <sbol:start>6672</sbol:start>
+            <sbol:end>6674</sbol:end>
+            <sbol:orientation rdf:resource="http://sbols.org/v2#inline"/>
+          </sbol:Range>
+        </sbol:location>
+      </sbol:SequenceAnnotation>
+    </sbol:sequenceAnnotation>
+    <sbol:sequenceAnnotation>
+      <sbol:SequenceAnnotation rdf:about="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation21">
+        <sbol:persistentIdentity rdf:resource="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation21"/>
+        <sbol:displayId>annotation21</sbol:displayId>
+        <dcterms:title>aadA</dcterms:title>
+        <gbConv:label>aadA</gbConv:label>
+        <gbConv:ApEinfo_revcolor>#f8d3a9</gbConv:ApEinfo_revcolor>
+        <gbConv:ApEinfo_fwdcolor>#f8d3a9</gbConv:ApEinfo_fwdcolor>
+        <sbol:role rdf:resource="http://identifiers.org/so/SO:0000316"/>
+        <sbol:location>
+          <sbol:Range rdf:about="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation21/range">
+            <sbol:persistentIdentity rdf:resource="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation21/range"/>
+            <sbol:displayId>range</sbol:displayId>
+            <sbol:start>10395</sbol:start>
+            <sbol:end>11187</sbol:end>
+            <sbol:orientation rdf:resource="http://sbols.org/v2#inline"/>
+          </sbol:Range>
+        </sbol:location>
+      </sbol:SequenceAnnotation>
+    </sbol:sequenceAnnotation>
+    <sbol:sequenceAnnotation>
+      <sbol:SequenceAnnotation rdf:about="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation2">
+        <sbol:persistentIdentity rdf:resource="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation2"/>
+        <sbol:displayId>annotation2</sbol:displayId>
+        <dcterms:title>4bp-SE2R</dcterms:title>
+        <gbConv:label>4bp-SE2R</gbConv:label>
+        <gbConv:ApEinfo_revcolor>#f58a5e</gbConv:ApEinfo_revcolor>
+        <gbConv:ApEinfo_fwdcolor>#f58a5e</gbConv:ApEinfo_fwdcolor>
+        <sbol:role rdf:resource="http://identifiers.org/so/SO:0001411"/>
+        <sbol:location>
+          <sbol:Range rdf:about="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation2/range">
+            <sbol:persistentIdentity rdf:resource="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation2/range"/>
+            <sbol:displayId>range</sbol:displayId>
+            <sbol:start>5856</sbol:start>
+            <sbol:end>5859</sbol:end>
+            <sbol:orientation rdf:resource="http://sbols.org/v2#inline"/>
+          </sbol:Range>
+        </sbol:location>
+      </sbol:SequenceAnnotation>
+    </sbol:sequenceAnnotation>
+    <sbol:sequenceAnnotation>
+      <sbol:SequenceAnnotation rdf:about="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation29">
+        <sbol:persistentIdentity rdf:resource="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation29"/>
+        <sbol:displayId>annotation29</sbol:displayId>
+        <dcterms:title>T7\terminator</dcterms:title>
+        <gbConv:label>T7\terminator</gbConv:label>
+        <gbConv:ApEinfo_revcolor>#ff9ccd</gbConv:ApEinfo_revcolor>
+        <gbConv:ApEinfo_fwdcolor>#ff9ccd</gbConv:ApEinfo_fwdcolor>
+        <sbol:role rdf:resource="http://identifiers.org/so/SO:0000141"/>
+        <sbol:location>
+          <sbol:Range rdf:about="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation29/range">
+            <sbol:persistentIdentity rdf:resource="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation29/range"/>
+            <sbol:displayId>range</sbol:displayId>
+            <sbol:start>5658</sbol:start>
+            <sbol:end>5785</sbol:end>
+            <sbol:orientation rdf:resource="http://sbols.org/v2#inline"/>
+          </sbol:Range>
+        </sbol:location>
+      </sbol:SequenceAnnotation>
+    </sbol:sequenceAnnotation>
+    <sbol:sequenceAnnotation>
+      <sbol:SequenceAnnotation rdf:about="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation27">
+        <sbol:persistentIdentity rdf:resource="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation27"/>
+        <sbol:displayId>annotation27</sbol:displayId>
+        <dcterms:title>ppsA_library_r</dcterms:title>
+        <gbConv:label>ppsA_library_r</gbConv:label>
+        <gbConv:ApEinfo_revcolor>#b7e6d7</gbConv:ApEinfo_revcolor>
+        <gbConv:ApEinfo_fwdcolor>#b7e6d7</gbConv:ApEinfo_fwdcolor>
+        <sbol:role rdf:resource="http://identifiers.org/so/SO:0001411"/>
+        <sbol:location>
+          <sbol:Range rdf:about="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation27/range">
+            <sbol:persistentIdentity rdf:resource="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation27/range"/>
+            <sbol:displayId>range</sbol:displayId>
+            <sbol:start>613</sbol:start>
+            <sbol:end>634</sbol:end>
+            <sbol:orientation rdf:resource="http://sbols.org/v2#inline"/>
+          </sbol:Range>
+        </sbol:location>
+      </sbol:SequenceAnnotation>
+    </sbol:sequenceAnnotation>
+    <sbol:sequenceAnnotation>
+      <sbol:SequenceAnnotation rdf:about="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation5">
+        <sbol:persistentIdentity rdf:resource="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation5"/>
+        <sbol:displayId>annotation5</sbol:displayId>
+        <dcterms:title>SeSam8_TAL</dcterms:title>
+        <gbConv:label>SeSam8_TAL</gbConv:label>
+        <gbConv:ApEinfo_revcolor>#75c6a9</gbConv:ApEinfo_revcolor>
+        <gbConv:ApEinfo_fwdcolor>#75c6a9</gbConv:ApEinfo_fwdcolor>
+        <sbol:role rdf:resource="http://identifiers.org/so/SO:0001411"/>
+        <sbol:location>
+          <sbol:Range rdf:about="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation5/range">
+            <sbol:persistentIdentity rdf:resource="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation5/range"/>
+            <sbol:displayId>range</sbol:displayId>
+            <sbol:start>7325</sbol:start>
+            <sbol:end>8851</sbol:end>
+            <sbol:orientation rdf:resource="http://sbols.org/v2#inline"/>
+          </sbol:Range>
+        </sbol:location>
+      </sbol:SequenceAnnotation>
+    </sbol:sequenceAnnotation>
+    <sbol:sequenceAnnotation>
+      <sbol:SequenceAnnotation rdf:about="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation17">
+        <sbol:persistentIdentity rdf:resource="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation17"/>
+        <sbol:displayId>annotation17</sbol:displayId>
+        <dcterms:title>ppsA </dcterms:title>
+        <gbConv:label>ppsA </gbConv:label>
+        <gbConv:ApEinfo_revcolor>#9eafd2</gbConv:ApEinfo_revcolor>
+        <gbConv:ApEinfo_fwdcolor>#9eafd2</gbConv:ApEinfo_fwdcolor>
+        <sbol:role rdf:resource="http://identifiers.org/so/SO:0000316"/>
+        <sbol:location>
+          <sbol:Range rdf:about="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation17/range">
+            <sbol:persistentIdentity rdf:resource="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation17/range"/>
+            <sbol:displayId>range</sbol:displayId>
+            <sbol:start>386</sbol:start>
+            <sbol:end>2758</sbol:end>
+            <sbol:orientation rdf:resource="http://sbols.org/v2#inline"/>
+          </sbol:Range>
+        </sbol:location>
+      </sbol:SequenceAnnotation>
+    </sbol:sequenceAnnotation>
+    <sbol:sequenceAnnotation>
+      <sbol:SequenceAnnotation rdf:about="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation35">
+        <sbol:persistentIdentity rdf:resource="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation35"/>
+        <sbol:displayId>annotation35</sbol:displayId>
+        <dcterms:title>threeUTR1</dcterms:title>
+        <gbConv:label>threeUTR1</gbConv:label>
+        <gbConv:ApEinfo_revcolor>#b1ff67</gbConv:ApEinfo_revcolor>
+        <gbConv:ApEinfo_fwdcolor>#b1ff67</gbConv:ApEinfo_fwdcolor>
+        <sbol:role rdf:resource="http://identifiers.org/so/SO:0001411"/>
+        <sbol:location>
+          <sbol:Range rdf:about="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation35/range">
+            <sbol:persistentIdentity rdf:resource="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation35/range"/>
+            <sbol:displayId>range</sbol:displayId>
+            <sbol:start>5855</sbol:start>
+            <sbol:end>5860</sbol:end>
+            <sbol:orientation rdf:resource="http://sbols.org/v2#inline"/>
+          </sbol:Range>
+        </sbol:location>
+      </sbol:SequenceAnnotation>
+    </sbol:sequenceAnnotation>
+    <sbol:sequenceAnnotation>
+      <sbol:SequenceAnnotation rdf:about="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation37">
+        <sbol:persistentIdentity rdf:resource="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation37"/>
+        <sbol:displayId>annotation37</sbol:displayId>
+        <dcterms:title>RBS2stop</dcterms:title>
+        <gbConv:label>RBS2stop</gbConv:label>
+        <gbConv:ApEinfo_revcolor>#84b0dc</gbConv:ApEinfo_revcolor>
+        <gbConv:ApEinfo_fwdcolor>#84b0dc</gbConv:ApEinfo_fwdcolor>
+        <sbol:role rdf:resource="http://identifiers.org/so/SO:0001411"/>
+        <sbol:location>
+          <sbol:Range rdf:about="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation37/range">
+            <sbol:persistentIdentity rdf:resource="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation37/range"/>
+            <sbol:displayId>range</sbol:displayId>
+            <sbol:start>8852</sbol:start>
+            <sbol:end>8886</sbol:end>
+            <sbol:orientation rdf:resource="http://sbols.org/v2#inline"/>
+          </sbol:Range>
+        </sbol:location>
+      </sbol:SequenceAnnotation>
+    </sbol:sequenceAnnotation>
+    <sbol:sequenceAnnotation>
+      <sbol:SequenceAnnotation rdf:about="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation28">
+        <sbol:persistentIdentity rdf:resource="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation28"/>
+        <sbol:displayId>annotation28</sbol:displayId>
+        <dcterms:title>N22</dcterms:title>
+        <gbConv:label>N22</gbConv:label>
+        <gbConv:ApEinfo_revcolor>#9eafd2</gbConv:ApEinfo_revcolor>
+        <gbConv:ApEinfo_fwdcolor>#9eafd2</gbConv:ApEinfo_fwdcolor>
+        <sbol:role rdf:resource="http://identifiers.org/so/SO:0001411"/>
+        <sbol:location>
+          <sbol:Range rdf:about="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation28/range">
+            <sbol:persistentIdentity rdf:resource="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation28/range"/>
+            <sbol:displayId>range</sbol:displayId>
+            <sbol:start>11307</sbol:start>
+            <sbol:end>11327</sbol:end>
+            <sbol:orientation rdf:resource="http://sbols.org/v2#inline"/>
+          </sbol:Range>
+        </sbol:location>
+      </sbol:SequenceAnnotation>
+    </sbol:sequenceAnnotation>
+    <sbol:sequenceAnnotation>
+      <sbol:SequenceAnnotation rdf:about="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation12">
+        <sbol:persistentIdentity rdf:resource="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation12"/>
+        <sbol:displayId>annotation12</sbol:displayId>
+        <dcterms:title>RBS4stop</dcterms:title>
+        <gbConv:label>RBS4stop</gbConv:label>
+        <gbConv:ApEinfo_revcolor>#ffef86</gbConv:ApEinfo_revcolor>
+        <gbConv:ApEinfo_fwdcolor>#ffef86</gbConv:ApEinfo_fwdcolor>
+        <sbol:role rdf:resource="http://identifiers.org/so/SO:0001411"/>
+        <sbol:location>
+          <sbol:Range rdf:about="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation12/range">
+            <sbol:persistentIdentity rdf:resource="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation12/range"/>
+            <sbol:displayId>range</sbol:displayId>
+            <sbol:start>2762</sbol:start>
+            <sbol:end>2799</sbol:end>
+            <sbol:orientation rdf:resource="http://sbols.org/v2#inline"/>
+          </sbol:Range>
+        </sbol:location>
+      </sbol:SequenceAnnotation>
+    </sbol:sequenceAnnotation>
+    <sbol:sequenceAnnotation>
+      <sbol:SequenceAnnotation rdf:about="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation11">
+        <sbol:persistentIdentity rdf:resource="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation11"/>
+        <sbol:displayId>annotation11</sbol:displayId>
+        <dcterms:title>Rho Independed Terminator</dcterms:title>
+        <gbConv:label>Rho Independed Terminator</gbConv:label>
+        <gbConv:ApEinfo_revcolor>#c7b0e3</gbConv:ApEinfo_revcolor>
+        <gbConv:ApEinfo_fwdcolor>#c7b0e3</gbConv:ApEinfo_fwdcolor>
+        <sbol:role rdf:resource="http://identifiers.org/so/SO:0001411"/>
+        <sbol:location>
+          <sbol:Range rdf:about="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation11/range">
+            <sbol:persistentIdentity rdf:resource="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation11/range"/>
+            <sbol:displayId>range</sbol:displayId>
+            <sbol:start>280</sbol:start>
+            <sbol:end>316</sbol:end>
+            <sbol:orientation rdf:resource="http://sbols.org/v2#inline"/>
+          </sbol:Range>
+        </sbol:location>
+      </sbol:SequenceAnnotation>
+    </sbol:sequenceAnnotation>
+    <sbol:sequenceAnnotation>
+      <sbol:SequenceAnnotation rdf:about="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation9">
+        <sbol:persistentIdentity rdf:resource="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation9"/>
+        <sbol:displayId>annotation9</sbol:displayId>
+        <dcterms:title>RBS1</dcterms:title>
+        <gbConv:label>RBS1</gbConv:label>
+        <gbConv:ApEinfo_revcolor>#f58a5e</gbConv:ApEinfo_revcolor>
+        <gbConv:ApEinfo_fwdcolor>#f58a5e</gbConv:ApEinfo_fwdcolor>
+        <sbol:role rdf:resource="http://identifiers.org/so/SO:0001411"/>
+        <sbol:location>
+          <sbol:Range rdf:about="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation9/range">
+            <sbol:persistentIdentity rdf:resource="http://sbols.org/Golden_Gate_2_tier_demo_1/annotation9/range"/>
+            <sbol:displayId>range</sbol:displayId>
+            <sbol:start>6197</sbol:start>
+            <sbol:end>6239</sbol:end>
+            <sbol:orientation rdf:resource="http://sbols.org/v2#inline"/>
+          </sbol:Range>
+        </sbol:location>
+      </sbol:SequenceAnnotation>
+    </sbol:sequenceAnnotation>
+    <sbol:sequence rdf:resource="http://sbols.org/Golden_Gate_2_tier_demo_1_seq"/>
+  </sbol:ComponentDefinition>
+  <sbol:Sequence rdf:about="http://sbols.org/Golden_Gate_2_tier_demo_1_seq">
+    <sbol:persistentIdentity rdf:resource="http://sbols.org/Golden_Gate_2_tier_demo_1_seq"/>
+    <sbol:displayId>Golden_Gate_2_tier_demo_1_seq</sbol:displayId>
+    <sbol:elements>TtgccGagcttttcattctgactgcaacgggcaatatgtctctgtgtggattaaaaaaagagtgtctgatagcagcttctgaactggttacctgccgtgagtaaattaaaattttattgacttaggtcactaaatactttaaccaatataggcatagcgcacagacagataaaaattacagagtacacaacatccatgaaacgcattagcaccaccattaccaccaccatcaccattaccacaggtaacggtgcgggctgacgcgtacaggaaacacagaaaaaagcccgcacctgacagtgcgggctttttttttcgaccaaaggtaacgaggtaacaacctagaaataattttgtttaactttaagaaggagatatacatatgtccaacaatggctcgtcaccgctggtgctttggtataaccaactcggcatgaatgatgtagacagggttgggggcaaaaatgcctccctgggtgaaatgattactaatctttccggaatgggtgtttccgttccgaatggtttcgccacaaccgccgacgcgtttaaccagtttctggaccaaagcggcgtaaaccagcgcatttatgaactgctggataaaacggatattgacgatgttactcagcttgcgaaagcgggcgcgcaaatccgccagtggattatcgacactcccttccagcctgagctggaaaacgccatccgcgaagcctatgcacagctttccgccgatgacgaaaacgcctcttttgcggtgcgctcctccgccaccgcagaagatatgccggacgcttcttttgccggtcagcaggaaaccttcctcaacgttcagggttttgacgccgttctcgtggcagtgaaacatgtatttgcttctctgtttaacgatcgcgccatctcttatcgtgtgcaccagggttacgatcaccgtggtgtggcgctctccgccggtgttcaacggatggtgcgctctgacctcgcatcatctggcgtgatgttctccattgataccgaatccggctttgaccaggtggtgtttatcacttccgcatggggccttggtgagatggtcgtgcagggtgcggttaacccggatgagttttacgtgcataaaccgacactggcggcgaatcgcccggctatcgtgcgccgcaccatggggtcgaaaaaaatccgcatggtttacgcgccgacccaggagcacggcaagcaggttaaaatcgaagacgtaccgcaggaacagcgtgacatcttctcgctgaccaacgaagaagtgcaggaactggcaaaacaggccgtacaaattgagaaacactacggtcgcccgatggatattgagtgggcgaaagatggccacaccggtaaactgttcattgtgcaggcgcgtccggaaaccgtgcgctcacgcggtcaggtcatggagcgttatacgctgcattcacagggtaagattatcgccgaaggccgtgctatcggtcatcgcatcggtgcgggtccggtgaaagtcatccatgacatcagcgaaatgaaccgcatcgaacctggcgacgtgctggttactgacatgaccgacccggactgggaaccgatcatgaagaaagcatctgccatcgtcaccaaccgtggcggtcgtacctgtcacgcggcgatcatcgctcgtgaactgggcattccggcggtagtgggctgtggagatgcaacagaacggatgaaagacggtgagaacgtcactgtttcttgtgccgaaggtgataccggttacgtctatgcggagttgctggaatttagcgtgaaaagctccagcgtagaaacgatgccggatctgccgttgaaagtgatgatgaacgtcggtaacccggaccgtgctttcgacttcgcctgcctaccgaacgaaggcgtgggccttgcgcgtctggaatttatcatcaaccgtatgattggcgtccacccacgcgcactgcttgagtttgacgatcaggaaccgcagttgcaaaacgaaatccgcgagatgatgaaaggttttgattctccgcgtgaattttacgttggtcgtctgactgaagggatcgcgacgctgggtgccgcgttttatccgaagcgcgtcattgtccgtctctctgattttaaatcgaacgaatatgccaacctggtcggtggtgagcgttacgagccagatgaagagaacccgatgctcggcttccgtggcgcgggccgctatgtttccgacagcttccgcgactgtttcgcgctggagtgtgaagcagtgaaacgtgtgcgcaacgacatgggactgaccaacgttgagatcatgatcccgttcgtgcgtaccgtagatcaggcgaaagcggtggttgaagaactggcgcgtcaggggctgaaacgtggcgagaacgggctgaaaatcatcatgatgtgtgaaatcccgtccaacgccttgctggccgagcagttcctcgaatatttcgacggcttctcaattggctcaaacgatatgacgcagctggcgctcggtctggaccgtgactccggcgtggtgtctgaattgttcgatgagcgcaacgatgcggtgaaagcactgctgtcgatggctatccgtgccgcgaagaaacagggcaaatatgtcgggatttgcggtcagggtccgtccgaccacgaagactttgccgcatggttgatggaagaggggatcgatagcctgtctctgaacccggacaccgtggtgcaaacctggttaagcctggctgaactgaagaaaTAATaaattaattgttcttttttcaggtgaaggttcccatGgaaacctatgctgtttttggtaatccgatagcccacagcaaatcgccattcattcatcagcaatttgctcagcaactgaatattgaacatccctatgggcgcgtgttggcacccatcaatgatttcatcaacacactgaacgctttctttagtgctggtggtaaaggtgcgaatgtgacggtgccttttaaagaagaggcttttgccagagcggatgagcttactgaacgggcagcgttggctggtgctgttaataccctcatgcggttagaagatggacgcctgctgggtgacaataccgatggtgtaggcttgttaagcgatctggaacgtctgtcttttatccgccctggtttacgtattctgcttatcggcgctggtggagcatctcgcggcgtactactgccactcctttccctggactgtgcggtgacaataactaatcggacggtatcccgcgcggaagagttggctaaattgtttgcgcacactggcagtattcaggcgttgagtatggacgaactggaaggtcatgagtttgatctcattattaatgcaacatccagtggcatcagtggtgatattccggcgatcccgtcatcgctcattcatccaggcatttattgctatgacatgttctatcagaaaggaaaaactccttttctggcatggtgtgagcagcgaggctcaaagcgtaatgctgatggtttaggaatgctggtggcacaggcggctcatgcctttcttctctggcacggtgttctgcctgacgtagaaccagttataaagcaattgcaggaggaattgtccgcgTaaccgttcatttatcacaaaaggattgttcgatGtcctcacgtaaagagcttgccaatgctattcgtgcgctgagcatggacgcagtacagaaagccaaatccggtcacccgggtgcccctatgggtatggctgacattgccgaagtcctgtggcgtgatttcctgaaacacaacccgcagaatccgtcctgggctgaccgtgaccgcttcgtgctgtccaacggccacggctccatgctgatctacagcctgctgcacctcaccggttacgatctgccgatggaagaactgaaaaacttccgtcagctgcactctaaaactccgggtcacccggaagtgggttacaccgctggtgtggaaaccaccaccggtccgctgggtcagggtattgccaacgcagtcggtatggcgattgcagaaaaaacgctggcggcgcagtttaaccgtccgggccacgacattgtcgaccactacacctacgccttcatgggcgacggctgcatgatggaaggcatctcccacgaagtttgctctctggcgggtacgctgaagctgggtaaactgattgcattctacgatgacaacggtatttctatcgatggtcacgttgaaggctggttcaccgacgacaccgcaatgcgtttcgaagcttacggctggcacgttattcgcgacatcgacggtcatgacgcggcatctatcaaacgcgcagtagaagaagcgcgcgcagtgactgacaaaccttccctgctgatgtgcaaaaccatcatcggtttcggttccccgaacaaagccggtacccacgactcccacggtgcgccgctgggcgacgctgaaattgccctgacccgcgaacaactgggctggaaatatgcgccgttcgaaatcccgtctgaaatctatgctcagtgggatgcgaaagaagcaggccaggcgaaagaatccgcatggaacgagaaattcgctgcttacgcgaaagcttatccgcaggaagccgctgaatttacccgccgtatgaaaggcgaaatgccgtctgacttcgacgctaaagcgaaagagttcatcgctaaactgcaggctaatccggcgaaaatcgccagccgtaaagcgtctcagaatgctatcgaagcgttcggtccgctgttgccggaattcctcggcggttctgctgacctggcgccgtctaacctgaccctgtggtctggttctaaagcaatcaacgaagatgctgcgggtaactacatccactacggtgttcgcgagttcggtatgaccgcgattgctaacggtatctccctgcacggtggcttcctgccgtacacctccaccttcctgatgttcgtggaatacgcacgtaacgccgtacgtatggctgcgctgatgaaacagcgtcaggtgatggtttacacccacgactccatcggtctgggcgaagacggcccgactcaccagccggttgagcaggtcgcttctctgcgcgtaaccccgaacatgtctacatggcgtccgtgtgaccaggttgaatccgcggtcgcgtggaaatacggtgttgagcgtcaggacggcccgaccgcactgatcctctcccgtcagaacctggcgcagcaggaacgaactgaagagcaactggcaaacatcgcgcgcggtggttatgtgctgaaagactgcgccggtcagccggaactgattttcatcgctaccggttcagaagttgaactggctgttgctgcctacgaaaaactgactgccgaaggcgtgaaagcgcgcgtggtgtccatgccgtctaccgacgcatttgacaagcaggatgctgcttaccgtgaatccgtactgccgaaagcggttactgcacgcgttgctgtagaagcgggtattgctgactactggtacaagtatgttggcctgaacggtgctatcgtcggtatgaccaccttcggtgaatctgctccggcagagctgctgtttgaagagttcggcttcactgttgataacgttgttgcgaaagcaaaagaactgctgTgatgggctgaagggtttaaGggctgctaacaaagcccgaaaggaagctgagttggctgctgccaccgctgagcaataactagcataaccccttggggcctctaaacgggtcttgaggggttttttgctgaaaggaggaactatatccggatatcccgcaagaggcccggcagtaccggcataaccaagcctatgcctacagcatccagggtgacggtgccTttggGagcttttcattctgactgcaacgggcaatatgtctctgtgtggattaaaaaaagagtgtctgatagcagcttctgaactggttacctgccgtgagtaaattaaaattttattgacttaggtcactaaatactttaaccaatataggcatagcgcacagacagataaaaattacagagtacacaacatccatgaaacgcattagcaccaccattaccaccaccatcaccattaccacaggtaacggtgcgggctgacgcgtacaggaaacacagaaaaaagcccgcacctgacagtgcgggctttttttttcgaccaaaggtaacgaggtaacaacctagaaataattttgtttaactttaagaaggagatatacatatgaattatcagaacgacgatttacgcatcaaagaaatcaaagagttacttcctcctgtcgcattgctggaaaaattccccgctactgaaaatgccgcgaatacggttgcccatgcccgaaaagcgatccataagatcctgaaaggtaatgatgatcgcctgttggttgtgattggcccatgctcaattcatgatcctgtcgcggcaaaagagtatgccactcgcttgctggcgctgcgtgaagagctgaaagatgagctggaaatcgtaatgcgcgtctattttgaaaagccgcgtaccacggtgggctggaaagggctgattaacgatccgcatatggataatagcttccagatcaacgacggtctgcgtatagcccgtaaattgctgcttgatattaacgacagcggtctgccagcggcaggtgagtttctcaatatgatcaccccacaatatctcgctgacctgatgagctggggcgcaattggcgcacgtaccaccgaatcgcaggtgcaccgcgaactggcatcagggctttcttgtccggtcggcttcaaaaatggcaccgacggtacgattaaagtggctatcgatgccattaatgccgccggtgcgccgcactgcttcctgtccgtaacgaaatgggggcattcggcgattgtgaataccagcggtaacggcgattgccatatcattctgcgcggcggtaaagagcctaactacagcgcgaagcacgttgctgaagtgaaagaagggctgaacaaagcaggcctgccagcacaggtgatgatcgatttcagccatgctaactcgtccaaacaattcaaaaagcagatggatgtttgtgctgacgtttgccagcagattgccggtggcgaaaaggccattattggcgtgatggtggaaagccatctggtggaaggcaatcagagcctcgagagcggggagccgctggcctacggtaagagcatcaccgatgcctgcatcggctgggaagataccgatgctctgttacgtcaactggcgaatgcagtaaaagcgcgtcgcgggTaaattaattgttcttttttcaggtgaaggttcccatGACCCAGGTTGTTGAACGTCAGGCAGATCGTCTGAGCAGCCGTGAATATCTGGCACGTGTTGTTCGTAGCGCAGGTTGGGATGCAGGTCTGACCAGCTGTACCGATGAAGAAATTGTTCGTATGGGTGCAAGCGCACGTACCATTGAAGAATATCTGAAAAGCGATAAACCGATCTATGGTCTGACCCAGGGTTTTGGTCCGCTGGTTCTGTTTGATGCAGATAGCGAACTGGAACAGGGTGGTAGCCTGATTAGCCATCTGGGCACCGGTCAGGGTGCACCGCTGGCACCGGAAGTTAGCCGTCTGATTCTGTGGCTGCGTATTCAGAATATGCGTAAAGGTTATAGCGCAGTTAGTCCGGTTTTTTGGCAGAAACTGGCAGATCTGTGGAATAAAGGTTTTACACCGGCAATTCCGCGTCATGGCACCGTTAGCGCAAGCGGTGATCTGCAGCCGCTGGCCCATGCAGCACTGGCATTTACCGGTGTTGGTGAAGCATGGACCCGTGATGCCGATGGTCGTTGGAGCACCGTTCCGGCAGTTGATGCACTGGCAGCCCTGGGTGCAGAACCGTTTGATTGGCCTGTTCGTGAAGCACTGGCCTTTGTTAATGGTACAGGTGCAAGCCTGGCAGTTGCAGTTCTGAATCATCGTAGTGCACTGCGTCTGGTTCGTGCATGTGCCGTTCTGAGCGCACGTCTGGCAACCCTGCTGGGTGCAAATCCGGAACATTATGATGTTGGTCATGGTGTTGCACGTGGTCAGGTTGGCCAGCTGACCGCAGCAGAATGGATTCGTCAGGGTCTGCCTCGTGGTATGGTTCGTGATGGTAGCCGTCCGCTGCAAGAACCGTATAGCCTGCGTTGTGCACCGCAGGTTCTGGGTGCGGTTCTGGATCAGCTGGATGGTGCCGGTGATGTTCTGGCACGCGAAGTTGATGGTTGTCAGGATAATCCGATTACCTATGAAGGTGAACTGCTGCACGGTGGTAATTTTCATGCAATGCCGGTTGGTTTTGCAAGCGATCAGATTGGTCTGGCAATGCATATGGCAGCATATCTGGCCGAACGTCAGCTGGGTCTGCTGGTTTCACCGGTTACCAATGGCGATCTGCCACCGATGCTGACACCGCGTGCAGGTCGTGGTGCAGGACTGGCAGGCGTTCAGATTAGCGCAACCAGCTTTGTTAGCCGTATTCGCCAGCTGGTTTTTCCGGCAAGCCTGACCACCCTGCCGACCAATGGTTGGAATCAGGATCATGTTCCGATGGCACTGAATGGTGCAAATAGCGTTTTTGAAGCCCTGGAACTGGGTTGGCTGACCGTGGGTAGCCTGGCCGTTGGTGTTGCCCAGCTGGCAGCAATGACAGGTCATGCAGCAGAAGGTGTTTGGGCTGAACTGGCAGGTATTTGTCCGCCTCTGGATGCCGATCGTCCACTGGGTGCCGAAGTTCGTGCAGCACGTGATCTGCTGAGTGCACATGCAGATCAGCTGCTGGTTGATGAAGCAGATGGTAAAGATTTTGGCTaaccgttcatttatcacaaaaggattgttcgatGgttgctgaattgaccgcattacgcgatcaaattgatgaagtcgataaagcgctgctgaatttattagcgaagcgtctggaactggttgctgaagtgggcgaggtgaaaagccgctttggactgcctatttatgttccggagcgcgaggcatctattttggcctcgcgtcgtgcagaggcggaagctctgggtgtaccgccagatctgattgaggatgttttgcgtcgggtgatgcgtgaatcttactccagtgaaaacgacaaaggatttaaaacactttgtccgtcactgcgtccggtggttatcgtcggcggtggcggtcagatgggacgcctgttcgagaagatgctgaccctctcgggttatcaggtgcggattctggagcaacatgactgggatcgagcggctgatattgttgccgatgccggaatggtgattgttagtgtgccaatccacgttactgagcaagttattggcaaattaccgcctttaccgaaagattgtattctggtcgatctggcatcagtgaaaaatgggccattacaggccatgctggtggcgcatgatggtccggtgctggggctacacccgatgttcggtccggacagcggtagcctggcaaagcaagttgtggtctggtgtgatggacgtaaaccggaagcataccaatggtttctggagcaaattcaggtctggggcgctcggctgcatcgtattagcgccgtcgagcacgatcagaatatggcgtttattcaggcactgcgccactttgctacttttgcttacgggctgcacctggcagaagaaaatgttcagcttgagcaacttctggcgctctcttcgccgatttaccgccttgagctggcgatggtcgggcgactgtttgctcaggatccgcagctttatgccgacatcattatgtcgtcagagcgtaatctggcgttaatcaaacgttactataagcgtttcggcgaggcgattgagttgctggagcagggcgataagcaggcgtttattgacagtttccgcaaggtggagcactggttcggcgattacgtacagcgttttcagagtgaaagccgcgtgttattgcgtcaggcgaatgacaatcgccagTgatgggctgaagggtttaaGggctgctaacaaagcccgaaaggaagctgagttggctgctgccaccgctgagcaataactagcataaccccttggggcctctaaacgggtcttgaggggttttttgctgaaaggaggaactatatccggatatcccgcaagaggcccggcagtaccggcataaccaagcctatgcctacagcatccagggtgacggtgccTtagtGtcgacctgcagaagcttagatctattaccctgttatccctactcgagttcatgtgcagctccatcagcaaaaggggatgataagtttatcaccaccgactatttgcaacagtgccgttgatcgtgctatgatcgactgatgtcatcagcggtggagtgcaatgtcatgagggaagcggtgatcgccgaagtatcgactcaactatcagaggtagttggcgtcatcgagcgccatctcgaaccgacgttgctggccgtacatttgtacggctccgcagtggatggcggcctgaagccacacagtgatattgatttgctggttacggtgaccgtaaggcttgatgaaacaacgcggcgagctttgatcaacgaccttttggaaacttcggcttcccctggagagagcgagattctccgcgctgtagaagtcaccattgttgtgcacgacgacatcattccgtggcgttatccagctaagcgcgaactgcaatttggagaatggcagcgcaatgacattcttgcaggtatcttcgagccagccacgatcgacattgatctggctatcttgctgacaaaagcaagagaacatagcgttgccttggtaggtccagcggcggaggaactctttgatccggttcctgaacaggatctatttgaggcgctaaatgaaaccttaacgctatggaactcgccgcccgactgggctggcgatgagcgaaatgtagtgcttacgttgtcccgcatttggtacagcgcagtaaccggcaaaatcgcgccgaaggatgtcgctgccgactgggcaatggagcgcctgccggcccagtatcagcccgtcatacttgaagctagacaggcttatcttggacaagaagaagatcgcttggcctcgcgcgcagatcagttggaagaatttgtccactacgtgaaaggcgagatcaccaaggtagtcggcaaataagatgccgctcgccagtcgattggctgagctcatgaagttcctattccgaagttccgcgaacgcgtaaaggatctaggtgaagatcctttttgataatctcatgaccaaaatcccttaacgTtcacacaacatagccacggGtgttcagctactgacggggtggtgcgtaacggcaaaagcaccgccggacatcagcgctagcggagtgtatactggcttactatgttggcactgatgagggtgtcagtgaagtgcttcatgtggcaggagaaaaaaggctgcaccggtgcgtcagcagaatatgtgatacaggatatattccgcttcctcgctcactgactcgctacgctcggtcgttcgactgcggcgagcggaaatggcttacgaacggggcggagatttcctggaagatgccaggaagatacttaacagggaagtgagagggccgcggcaaagccgtttttccataggctccgcccccctgacaagcatcacgaaatctgacgctcaaatcagtggtggcgaaacccgacaggactataaagataccaggcgtttccccctggcggctccctcgtgcgctctcctgttcctgcctttcggtttaccggtgtcattccgctgttatggccgcgtttgtctcattccacgcctgacactcagttccgggtaggcagttcgctccaagctggactgtatgcacgaaccccccgttcagtccgaccgctgcgccttatccggtaactatcgtcttgagtccaacccggaaagacatgcaaaagcaccactggcagcagccactggtaattgatttagaggagttagtcttgaagtcatgcgccggttaaggctaaactgaaaggacaagttttggtgactgcgctcctccaagccagttacctcggttcaaagagttggtagctcagagaaccttcgaaaaaccgccctgcaaggcggttttttcgttttcagagcaagagattacgcgcagaccaaaacgatctcaagaagatcatcttattaatcagataaaatatttctagatttcagtgcaatttatctcttcaaatgtagcacctgaagtcagccccatacgatataagttgtaattctcatgtttgacagcttatcacccagtcctgctcgcttcgctacttggccatacccacgccgaaacaagcgctcatgagcccgaagtggcgagcccgatcttccccatcggtgatgtc</sbol:elements>
+    <sbol:encoding rdf:resource="http://www.chem.qmul.ac.uk/iubmb/misc/naseq.html"/>
+  </sbol:Sequence>
+</rdf:RDF>

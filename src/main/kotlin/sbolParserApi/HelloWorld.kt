@@ -1,7 +1,7 @@
-package sbolParserApi;
+package sbolParserApi
 
 public class HelloWorld {
-     fun test() : Boolean  {
+    fun test(): Boolean {
         return true
     }
 }

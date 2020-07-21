@@ -24,7 +24,6 @@ import io.ktor.server.engine.embeddedServer
 import io.ktor.server.netty.Netty
 import org.apache.log4j.BasicConfigurator
 
-
 // Main server
 fun Application.module() {
     install(DefaultHeaders)
@@ -52,7 +51,7 @@ fun Application.module() {
 
             var fileContentType: ContentType
             var fileBytes = byteArrayOf()
-            val propMaxByteSize = 1024 * 1024;
+            val propMaxByteSize = 1024 * 1024
             multiPartData.forEachPart { part ->
                 when (part) {
                     is PartData.FileItem -> {
@@ -86,6 +85,3 @@ fun main(args: Array<String>) {
     BasicConfigurator.configure()
     embeddedServer(Netty, 8080, module = Application::module).start()
 }
-
-
-
