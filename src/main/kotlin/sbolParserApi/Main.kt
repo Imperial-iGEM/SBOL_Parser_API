@@ -10,12 +10,19 @@ import io.ktor.features.DefaultHeaders
 import io.ktor.gson.gson
 import io.ktor.http.ContentType
 import io.ktor.http.HttpMethod
+import io.ktor.http.HttpStatusCode
+import io.ktor.http.content.PartData
+import io.ktor.http.content.forEachPart
+import io.ktor.http.content.streamProvider
+import io.ktor.request.receiveMultipart
+import io.ktor.response.respond
 import io.ktor.response.respondText
+import io.ktor.routing.get
+import io.ktor.routing.post
 import io.ktor.routing.routing
 import io.ktor.server.engine.embeddedServer
 import io.ktor.server.netty.Netty
 import org.apache.log4j.BasicConfigurator
-import io.ktor.routing.*
 
 
 // Main server
@@ -37,6 +44,40 @@ fun Application.module() {
     routing {
         get("/") {
             call.respondText("Hello World", ContentType.Text.Html)
+        }
+
+        post("/upload") {
+            // Receive data
+            val multiPartData = call.receiveMultipart()
+
+            var fileContentType: ContentType
+            var fileBytes = byteArrayOf()
+            val propMaxByteSize = 1024 * 1024;
+            multiPartData.forEachPart { part ->
+                when (part) {
+                    is PartData.FileItem -> {
+                        if (part.headers["Content-Length"]?.toInt() ?: 0 > propMaxByteSize) { // Check data size
+                            call.respond(HttpStatusCode.PayloadTooLarge, "File is too large")
+                        } else {
+                            // Receive data
+                            part.streamProvider().use { input -> fileBytes = input.readBytes() }
+
+                            if (fileBytes.size > propMaxByteSize) { // Check data size again
+                                call.respond(HttpStatusCode.BadRequest, "Content-Length header incorrect and file is too large")
+                            } else {
+                                fileContentType = part.contentType ?: ContentType.Application.Any
+                                println(fileContentType.toString())
+                                println(fileBytes.size)
+                                println(String(fileBytes))
+                                call.respond(HttpStatusCode.OK, String(fileBytes))
+                            }
+                        }
+                    }
+                    else -> {
+                        call.respond(HttpStatusCode.BadRequest, "Not a file upload")
+                    }
+                }
+            }
         }
     }
 }
