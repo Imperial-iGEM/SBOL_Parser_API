@@ -16,6 +16,8 @@ repositories {
     jcenter()
 }
 
+
+
 dependencies {
     implementation(kotlin("stdlib"))
     implementation("org.apache.commons:commons-text:1.8")
@@ -44,9 +46,14 @@ ktlint {
 }
 
 tasks {
+    withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
+        kotlinOptions.jvmTarget = "1.8"
+    }
     compileKotlin {
     }
-
+    compileJava{
+        options.compilerArgs.addAll(arrayOf("--release", "8"))
+    }
     compileTestKotlin {
     }
 
