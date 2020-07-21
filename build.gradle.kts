@@ -16,6 +16,8 @@ repositories {
     jcenter()
 }
 
+
+
 dependencies {
     implementation(kotlin("stdlib"))
     implementation("org.apache.commons:commons-text:1.8")
@@ -27,7 +29,9 @@ dependencies {
     implementation("io.ktor:ktor-gson:$ktorVersion")
     implementation(group = "org.slf4j", name = "slf4j-api", version = "1.7.5")
     implementation(group = "org.slf4j", name = "slf4j-log4j12", version = "1.7.5")
-
+    implementation("org.sbolstandard:libSBOLj:2.3.1")
+    implementation(group = "com.fasterxml.jackson.dataformat", name = "jackson-dataformat-xml", version = "2.9.4")
+    compile("org.apache.commons:commons-csv:1.8")
     testImplementation(kotlin("test"))
     testImplementation(kotlin("test-junit"))
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.3.1")
@@ -42,11 +46,14 @@ ktlint {
 }
 
 tasks {
-
-
+    withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
+        kotlinOptions.jvmTarget = "1.8"
+    }
     compileKotlin {
     }
-
+    compileJava{
+        options.compilerArgs.addAll(arrayOf("--release", "8"))
+    }
     compileTestKotlin {
     }
 

@@ -23,7 +23,7 @@ import io.ktor.routing.routing
 import io.ktor.server.engine.embeddedServer
 import io.ktor.server.netty.Netty
 import org.apache.log4j.BasicConfigurator
-
+import org.sbolstandard.core2.SBOLReader
 
 // Main server
 fun Application.module() {
@@ -52,7 +52,7 @@ fun Application.module() {
 
             var fileContentType: ContentType
             var fileBytes = byteArrayOf()
-            val propMaxByteSize = 1024 * 1024;
+            val propMaxByteSize = 1024 * 1024
             multiPartData.forEachPart { part ->
                 when (part) {
                     is PartData.FileItem -> {
@@ -68,7 +68,8 @@ fun Application.module() {
                                 fileContentType = part.contentType ?: ContentType.Application.Any
                                 println(fileContentType.toString())
                                 println(fileBytes.size)
-                                println(String(fileBytes))
+//                                println(String(fileBytes))
+                                parserSBOL(fileBytes)
                                 call.respond(HttpStatusCode.OK, String(fileBytes))
                             }
                         }
@@ -87,5 +88,23 @@ fun main(args: Array<String>) {
     embeddedServer(Netty, 8080, module = Application::module).start()
 }
 
+fun parserSBOL(fileBytes: ByteArray): Boolean {
+    val filePath = "./examples/sbol_files/iGEM2020/Trp_Optimization.xml"
+    val prURI = "http://www.dummy.org/"
+    val combinatorialDerivationURI = "http://www.dummy.org/Trp_Optimization_CombinatorialDerivation/1"
+//    val xmlFile = File(this.getCahce)
+    println(KotlinVersion.CURRENT)
+    println("v" + System.getProperty("java.version"))
+//    val doc = SBOLReader.read(fileBytes.inputStream())
+    val doc = SBOLReader.read(filePath)
 
-
+    doc.defaultURIprefix = prURI
+    try {
+        val parser = SBOLParser()
+        parser.generateCsv(doc, combinatorialDerivationURI)
+    } catch (e: Exception) {
+        e.printStackTrace()
+        return false
+    }
+    return true
+}
