@@ -1,3 +1,5 @@
+package sbolParserApi;
+
 import javassist.compiler.ast.Variable;
 import org.sbolstandard.core2.*;
 import org.sbolstandard.core2.Collection;

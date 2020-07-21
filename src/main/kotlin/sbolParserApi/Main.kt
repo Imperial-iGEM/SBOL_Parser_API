@@ -1,5 +1,7 @@
 package sbolParserApi
 
+import com.fasterxml.jackson.dataformat.xml.XmlMapper
+import com.fasterxml.jackson.module.kotlin.readValue
 import io.ktor.application.Application
 import io.ktor.application.call
 import io.ktor.application.install
@@ -23,6 +25,8 @@ import io.ktor.routing.routing
 import io.ktor.server.engine.embeddedServer
 import io.ktor.server.netty.Netty
 import org.apache.log4j.BasicConfigurator
+import org.sbolstandard.core2.SBOLReader
+import java.io.File
 
 // Main server
 fun Application.module() {
@@ -67,7 +71,8 @@ fun Application.module() {
                                 fileContentType = part.contentType ?: ContentType.Application.Any
                                 println(fileContentType.toString())
                                 println(fileBytes.size)
-                                println(String(fileBytes))
+//                                println(String(fileBytes))
+                                parserSBOL(fileBytes)
                                 call.respond(HttpStatusCode.OK, String(fileBytes))
                             }
                         }
@@ -84,4 +89,24 @@ fun Application.module() {
 fun main(args: Array<String>) {
     BasicConfigurator.configure()
     embeddedServer(Netty, 8080, module = Application::module).start()
+}
+
+
+fun parserSBOL(fileBytes: ByteArray): Boolean {
+    val filePath = "./examples/sbol_files/dummy.xml"
+    val prURI = "http://www.dummy.org/"
+    val combinatorialDerivationURI = "http://www.dummy.org/Trp_Optimization_CombinatorialDerivation/1"
+//    val xmlFile = File(this.getCahce)
+//    val doc = SBOLReader.read(fileBytes.inputStream())
+    val doc = SBOLReader.read(filePath)
+
+    doc.defaultURIprefix = prURI
+    try {
+        val parser = SBOLParser()
+        parser.generateCsv(doc, combinatorialDerivationURI)
+    } catch (e: Exception) {
+        e.printStackTrace()
+        return false
+    }
+    return true
 }

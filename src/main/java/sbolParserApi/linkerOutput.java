@@ -1,3 +1,5 @@
+package sbolParserApi;
+
 import org.sbolstandard.core2.*;
 
 import java.net.URI;

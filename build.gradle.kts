@@ -28,6 +28,7 @@ dependencies {
     implementation(group = "org.slf4j", name = "slf4j-api", version = "1.7.5")
     implementation(group = "org.slf4j", name = "slf4j-log4j12", version = "1.7.5")
     implementation("org.sbolstandard:libSBOLj:2.3.1")
+    implementation(group = "com.fasterxml.jackson.dataformat", name = "jackson-dataformat-xml", version = "2.9.4")
     compile("org.apache.commons:commons-csv:1.8")
     testImplementation(kotlin("test"))
     testImplementation(kotlin("test-junit"))

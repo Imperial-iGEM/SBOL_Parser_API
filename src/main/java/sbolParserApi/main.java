@@ -1,7 +1,8 @@
+package sbolParserApi;
+
 import org.sbolstandard.core2.*;
 
 import java.io.IOException;
-import java.util.Scanner;
 
 class main {
     public static void main(String[] args) throws SBOLValidationException, SBOLConversionException, IOException {
