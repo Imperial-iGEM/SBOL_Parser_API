@@ -24,6 +24,7 @@ import io.ktor.server.engine.embeddedServer
 import io.ktor.server.netty.Netty
 import org.apache.log4j.BasicConfigurator
 import org.sbolstandard.core2.SBOLReader
+import java.io.File
 
 // Main server
 fun Application.module() {
@@ -70,7 +71,9 @@ fun Application.module() {
                                 println(fileBytes.size)
 //                                println(String(fileBytes))
                                 parserSBOL(fileBytes)
-                                call.respond(HttpStatusCode.OK, String(fileBytes))
+                                val constructCSV = File("./examples/sbol_files/constructs.csv")
+                                val outputBytes = constructCSV.readBytes()
+                                call.respond(HttpStatusCode.OK, String(outputBytes))
                             }
                         }
                     }
@@ -95,8 +98,8 @@ fun parserSBOL(fileBytes: ByteArray): Boolean {
 //    val xmlFile = File(this.getCahce)
     println(KotlinVersion.CURRENT)
     println("v" + System.getProperty("java.version"))
-//    val doc = SBOLReader.read(fileBytes.inputStream())
-    val doc = SBOLReader.read(filePath)
+    val doc = SBOLReader.read(fileBytes.inputStream())
+//    val doc = SBOLReader.read(filePath)
 
     doc.defaultURIprefix = prURI
     try {
