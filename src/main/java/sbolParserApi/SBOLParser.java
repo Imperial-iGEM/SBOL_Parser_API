@@ -30,6 +30,20 @@ public class SBOLParser {
     }
 
     /**
+     * Retrieves a random subset of a HashSet of Component Definitions.
+     *
+     * @param allComponentDefs HashSet of Component Definitions from which subset is drawn
+     * @param size Size of subset
+     * @return Subset of Component Definitions
+     */
+    private static HashSet<ComponentDefinition> getRandomSubset(HashSet<ComponentDefinition> allComponentDefs, int size){
+        ArrayList<ComponentDefinition> listOfAllComponentDefs = new ArrayList<ComponentDefinition>(allComponentDefs);
+        Collections.shuffle(listOfAllComponentDefs);
+
+        return new HashSet<>(listOfAllComponentDefs.subList(0,size));
+    }
+
+    /**
      * Returns a flattened List of Components (unsorted) from a hierarchical design.
      *
      * @param componentDefinition Component Definition defining Top Level design
@@ -755,6 +769,12 @@ public class SBOLParser {
         //Display number of Root Component Definitions
         int numberOfDesigns = allComponentDefs.size();
         System.out.println("This SBOL Document contains "+numberOfDesigns+" designs.");
+
+        //Randomly select 96 designs if more than 96 designs
+        if(numberOfDesigns>96){
+            System.out.println("96 designs will be randomly selected.");
+            allComponentDefs = getRandomSubset(allComponentDefs,96);
+        }
 
         //Get minimum number of parts required to build all the constructs contained in the SBOL Document
         int minNumberOfParts = getMinNumberOfParts(allComponentDefs);
