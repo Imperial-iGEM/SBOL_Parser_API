@@ -29,6 +29,53 @@ public class SBOLParser {
         }
     }
 
+    /**
+     * Returns a flattened List of Components (unsorted) from a hierarchical design.
+     *
+     * @param componentDefinition Component Definition defining Top Level design
+     * @return List of Components
+     */
+    private static List<Component> getAllComponents(ComponentDefinition componentDefinition){
+        List<Component> allComponents = new ArrayList<Component>();
+        ArrayDeque<Component> deque = new ArrayDeque<Component>(componentDefinition.getComponents());
+
+        while(!deque.isEmpty()){
+            Component component = deque.pop();
+            ComponentDefinition cdOfComponent = component.getDefinition();
+            if(!cdOfComponent.getComponents().isEmpty()){
+                for(Component c: cdOfComponent.getComponents()){
+                    deque.push(c);
+                }
+            }
+            else{
+                allComponents.add(component);
+            }
+        }
+        return allComponents;
+    }
+
+    /**
+     * Filters a (Hash)Set of Component Definitions. Current implementation removes designs with repeated parts.
+     *
+     * @param allComponentDefs HashSet of Component Definitions to be filtered.
+     * @return Filtered HashSet of Component Definitions.
+     */
+    private static HashSet<ComponentDefinition> filter(HashSet<ComponentDefinition> allComponentDefs){
+        HashSet<ComponentDefinition> filteredComponentDefs = new HashSet<>();
+        for(ComponentDefinition cd: allComponentDefs){
+            filteredComponentDefs.add(cd);
+            List<Component> allComponents = getAllComponents(cd);
+            HashSet<ComponentDefinition> definitionHashSet = new HashSet<>();
+            for(Component c: allComponents){
+                if(!definitionHashSet.add(c.getDefinition())){
+                    filteredComponentDefs.remove(cd);
+                    break;
+                }
+            }
+        }
+        return filteredComponentDefs;
+    }
+
     /*
      The following section contains code which was adapted from:
      M. Zhang, J. McLaughlin, A. Wipat, and C. Myers, SBOLDesigner 2: An Intuitive Tool for Structural Genetic Design, in ACS Synthetic Biology 6(7): 1150-1160, July 21, 2017.
@@ -693,10 +740,6 @@ public class SBOLParser {
 
         //Enumerate Combinatorial Derivations and add to set of all Component Definitions
         HashSet<ComponentDefinition> allComponentDefs = new HashSet<ComponentDefinition>();
-//        for(CombinatorialDerivation combDeriv: combinatorialDerivations){
-//            HashSet<ComponentDefinition> designs = enumerate(doc,combDeriv);
-//            allComponentDefs.addAll(designs);
-//        }
         System.out.println("Enumerating Combinatorial Derivations...");
         HashSet<ComponentDefinition> designs = enumerate(doc,doc.getCombinatorialDerivation(URI.create(combinatorialDerivationURI)));
         System.out.println("Completed.");
@@ -704,6 +747,10 @@ public class SBOLParser {
 
         //Add Root Component Definitions to all Component Definitions
         allComponentDefs.addAll(componentDefs);
+
+        //Remove designs with repeated parts
+        System.out.println("Removing designs with repeated parts...");
+        allComponentDefs = filter(allComponentDefs);
 
         //Display number of Root Component Definitions
         int numberOfDesigns = allComponentDefs.size();
