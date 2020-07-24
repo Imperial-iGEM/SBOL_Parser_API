@@ -22,9 +22,13 @@ import io.ktor.routing.post
 import io.ktor.routing.routing
 import io.ktor.server.engine.embeddedServer
 import io.ktor.server.netty.Netty
+import okhttp3.*
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.RequestBody.Companion.asRequestBody
 import org.apache.log4j.BasicConfigurator
 import org.sbolstandard.core2.SBOLReader
 import java.io.File
+import java.io.IOException
 
 // Main server
 fun Application.module() {
@@ -73,7 +77,34 @@ fun Application.module() {
                                 parserSBOL(fileBytes)
                                 val constructCSV = File("./examples/sbol_files/constructs.csv")
                                 val outputBytes = constructCSV.readBytes()
-                                call.respond(HttpStatusCode.OK, String(outputBytes))
+                                val contentType = "text/csv".toMediaTypeOrNull()
+                                val fileConstruct = constructCSV
+                                val partsLinkers = File("./examples/sbol_files/parts_linkers.csv")
+                                val requestBody: RequestBody = MultipartBody.Builder()
+                                        .setType(MultipartBody.FORM)
+                                        .addFormDataPart("ethanol_stage2", "A1")
+                                        .addFormDataPart("deep_well_stage4", "A11")
+                                        .addFormDataPart("construct_csv", "constructs.csv", fileConstruct.asRequestBody(contentType))
+                                        .addFormDataPart("parts_linkers_csv", "parts_linkers_csv", partsLinkers.asRequestBody(contentType))
+                                        .build()
+                                val client = OkHttpClient()
+
+                                val request = Request.Builder().url("http://127.0.0.1:8000/Input/").post(requestBody).build()
+                                try {
+                                    val response: Response = client.newCall(request).execute()
+
+                                    print(response.toString())
+                                    if (response.code == 200) {
+                                        response.body?.string()?.let { it1 -> call.respond(HttpStatusCode.OK, it1) }
+                                    } else {
+                                        call.respond(HttpStatusCode.InternalServerError, "Internal Server Error")
+                                    }
+
+                                    // Do something with the response.
+                                } catch (e: IOException) {
+                                    e.printStackTrace()
+                                    call.respond(HttpStatusCode.InternalServerError, "Internal Server Error")
+                                }
                             }
                         }
                     }
