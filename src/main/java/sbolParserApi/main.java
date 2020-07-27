@@ -16,7 +16,7 @@ class main {
 
         try{
             SBOLParser parser = new SBOLParser();
-            parser.generateCsv(doc,combinatorialDerivationURI);
+            parser.generateCsv(doc,"COMBINATORIAL_DERIVATION",combinatorialDerivationURI,88);
         }
         catch(Exception e){
             e.printStackTrace();

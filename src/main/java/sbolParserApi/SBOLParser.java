@@ -8,6 +8,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URI;
+import java.sql.Timestamp;
 import java.util.*;
 
 public class SBOLParser {
@@ -30,7 +31,53 @@ public class SBOLParser {
     }
 
     /**
-     * Retrieves a random subset of a HashSet of Component Definitions.
+     * Returns several non-overlapping subsets of a set of Component Definitions
+     *
+     * @param allComponentDefs Set of Component Definitions
+     * @param maxSize Maximum number of constructs to be assembled in one run
+     * @param numberOfSubsets Number of runs to be executed
+     * @return Non-overlapping subsets of a set of Component Definitions
+     */
+    private static HashSet<HashSet<ComponentDefinition>> getRandomSubsets(HashSet<ComponentDefinition> allComponentDefs, int maxSize, int numberOfSubsets){
+        ArrayList<ComponentDefinition> listOfAllComponentDefs = new ArrayList<ComponentDefinition>(allComponentDefs);
+        Collections.shuffle(listOfAllComponentDefs);
+        HashSet<HashSet<ComponentDefinition>> subsets = new HashSet<>();
+        //Check if number of designs is less than one plate
+        if(allComponentDefs.size()<maxSize){
+            maxSize = allComponentDefs.size();
+            HashSet<ComponentDefinition> subset = new HashSet<>(listOfAllComponentDefs.subList(0, maxSize));
+            subsets.add(subset);
+            System.out.println("Number of designs is less than size specified for one run. All designs will be included. (Number of designs: " +maxSize+")");
+            return subsets;
+        }
+        //Check if number of designs can fill all plates
+        else if(allComponentDefs.size()<maxSize*(numberOfSubsets-1)){
+            numberOfSubsets = allComponentDefs.size()/maxSize;
+            while(allComponentDefs.size()>maxSize){
+                HashSet<ComponentDefinition> subset = new HashSet<>(listOfAllComponentDefs.subList(0,maxSize));
+                subsets.add(subset);
+                allComponentDefs.removeAll(subset);
+                listOfAllComponentDefs.removeAll(subset);
+            }
+            subsets.add(allComponentDefs);
+            System.out.println("Number of designs is insufficient for number of runs specified. Only "+numberOfSubsets+" of runs will be executed.");
+            return subsets;
+        }
+        else{
+            for(int i=0;i<numberOfSubsets;i++){
+                HashSet<ComponentDefinition> subset = new HashSet<>(listOfAllComponentDefs.subList(0,maxSize));
+                subsets.add(subset);
+                allComponentDefs.removeAll(subset);
+                listOfAllComponentDefs.removeAll(subset);
+            }
+            System.out.println("Number of designs: "+maxSize*numberOfSubsets);
+            System.out.println("Number of runs: "+numberOfSubsets);
+            return subsets;
+        }
+    }
+
+    /**
+     * Retrieves a random subset of a set of Component Definitions.
      *
      * @param allComponentDefs HashSet of Component Definitions from which subset is drawn
      * @param size Size of subset
@@ -39,8 +86,14 @@ public class SBOLParser {
     private static HashSet<ComponentDefinition> getRandomSubset(HashSet<ComponentDefinition> allComponentDefs, int size){
         ArrayList<ComponentDefinition> listOfAllComponentDefs = new ArrayList<ComponentDefinition>(allComponentDefs);
         Collections.shuffle(listOfAllComponentDefs);
-
-        return new HashSet<>(listOfAllComponentDefs.subList(0,size));
+        if(allComponentDefs.size()<size){
+            size = allComponentDefs.size();
+            System.out.println("Number of designs is less than size specified. All designs will be included. (Number of designs: " +size+")");
+            return new HashSet<ComponentDefinition>(listOfAllComponentDefs.subList(0, size));
+        }
+        else{
+            return new HashSet<ComponentDefinition>(listOfAllComponentDefs.subList(0, size));
+        }
     }
 
     /**
@@ -693,9 +746,7 @@ public class SBOLParser {
      * @return FileWriter for construct csv
      * @throws IOException Throws exception if any IO Exceptions are encountered.
      */
-    private FileWriter createConstructCsvHeader(int minNumberOfParts) throws IOException{
-        //Initialize FileWriter for construct csv
-        FileWriter constructWriter = new FileWriter("./examples/sbol_files/constructs.csv");
+    private void createConstructCsvHeader(FileWriter constructWriter, int minNumberOfParts) throws IOException{
         //Write Header
         constructWriter.append("Well");
 
@@ -707,7 +758,6 @@ public class SBOLParser {
         }
         constructWriter.append("\n");
         constructWriter.flush();
-        return constructWriter;
     }
 
     /**
@@ -716,69 +766,231 @@ public class SBOLParser {
      * @return FileWriter for parts/linkers csv
      * @throws IOException Throws exception if any IO Exceptions are encountered.
      */
-    private FileWriter createPartsLinkersCsvHeader() throws IOException{
-        //Initialize FileWriter for parts/linkers csv
-        FileWriter partsLinkersWriter = new FileWriter("./examples/sbol_files/parts_linkers.csv");
+    private void createPartsLinkersCsvHeader(FileWriter partsLinkersWriter) throws IOException{
         partsLinkersWriter.append("Part/linker");
         partsLinkersWriter.append(",");
         partsLinkersWriter.append("Well");
         partsLinkersWriter.append(",");
         partsLinkersWriter.append("Part concentration (ng/uL)");
         partsLinkersWriter.append("\n");
-        return partsLinkersWriter;
     }
 
     /**
-     * Generates contruct csv for DNABot using SBOL Document as input
+     * Generates several construct csv for DNABot using SBOL Document (with Combinatorial Derivations) as input
      *
-     * @param doc SBOL Document containing construct designs
+     * @param doc SBOL Document containing combinatorial construct designs
+     * @param constructType Accepts COMPONENT_DEFINITION or COMBINATORIAL_DERIVATION as input
+     * @param constructURI URI of Combinatorial Derivation to enumerate
+     * @param maxSize Maximum number of designs in a single run
+     * @param numberOfRuns Number of runs to be executed
      * @throws SBOLValidationException Throws exception if any SBOL Validation Exceptions are encountered.
      * @throws SBOLConversionException Throws exception if any SBOL Conversion Exceptions are encountered.
      * @throws IOException Throws exception if any IO Exceptions are encountered.
      */
-    public void generateCsv(SBOLDocument doc, String combinatorialDerivationURI) throws SBOLValidationException, SBOLConversionException, IOException{
-       //Instantiate well index
+    public void generateCsv(SBOLDocument doc, String constructType, String constructURI, int maxSize, int numberOfRuns) throws SBOLValidationException, SBOLConversionException, IOException{
+        //Instantiate well index
         int well_index = 1;
 
-        //Obtain set of Root Component Definitions
-        Set<ComponentDefinition> componentDefs = getRootCds(doc);
-
-        //Obtain set of Combinatorial Derivations
-        Set<CombinatorialDerivation> combinatorialDerivations = doc.getCombinatorialDerivations();
-
-        //Remove templates from Root Component Definitions
-        for(CombinatorialDerivation derivation: combinatorialDerivations){
-            ComponentDefinition template = derivation.getTemplate();
-            componentDefs.remove(template);
-        }
-
-        //Enumerate Combinatorial Derivations and add to set of all Component Definitions
+        //Instantiate set of all Component Definitions
         HashSet<ComponentDefinition> allComponentDefs = new HashSet<ComponentDefinition>();
-        System.out.println("Enumerating Combinatorial Derivations...");
-        HashSet<ComponentDefinition> designs = enumerate(doc,doc.getCombinatorialDerivation(URI.create(combinatorialDerivationURI)));
-        System.out.println("Completed.");
-        allComponentDefs.addAll(designs);
 
-        //Add Root Component Definitions to all Component Definitions
-        allComponentDefs.addAll(componentDefs);
+        //Cases
+        switch (constructType) {
+            case "COMPONENT_DEFINITION":
+                //Add Root Component Definitions to all Component Definitions
+                allComponentDefs.add(doc.getComponentDefinition(URI.create(constructURI)));
+                break;
+            case "COMBINATORIAL_DERIVATION":
+                //Enumerate Combinatorial Derivations and add to set of all Component Definitions
+                System.out.println("Enumerating Combinatorial Derivations...");
+                HashSet<ComponentDefinition> designs = enumerate(doc,doc.getCombinatorialDerivation(URI.create(constructURI)));
+                System.out.println("Completed.");
+                allComponentDefs.addAll(designs);
+                break;
+        }
 
         //Remove designs with repeated parts
         System.out.println("Removing designs with repeated parts...");
         allComponentDefs = filter(allComponentDefs);
 
-        //Display number of Root Component Definitions
+        //Display number of Component Definitions to be constructed
         int numberOfDesigns = allComponentDefs.size();
-        System.out.println("This SBOL Document contains "+numberOfDesigns+" designs.");
+        System.out.println("This SBOL Document contains "+numberOfDesigns+" designs to be constructed.");
 
-        //Randomly select 96 designs if more than 96 designs
-        if(numberOfDesigns>96){
-            System.out.println("96 designs will be randomly selected.");
-            allComponentDefs = getRandomSubset(allComponentDefs,96);
+        //Select number of experimental runs (determined by number of construct csv) and how many designs per run
+        HashSet<HashSet<ComponentDefinition>> runs = getRandomSubsets(allComponentDefs,maxSize,numberOfRuns);
+
+        for(HashSet<ComponentDefinition> run: runs) {
+            //Set/Reset well index
+            well_index = 1;
+
+            //Find minimum number of parts required for construct csv
+            int minNumberOfParts = getMinNumberOfParts(run);
+
+            //Timestamp
+            Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+
+            //Initialize FileWriter for construct csv
+            FileWriter constructCsv = new FileWriter("./examples/sbol_files/constructs"+timestamp.getTime()+".csv");
+            //Add parts/linkers csv header
+            createConstructCsvHeader(constructCsv, minNumberOfParts);
+
+            //Initialize FileWriter for parts/linkers csv
+            FileWriter partsLinkersCsv = new FileWriter("./examples/sbol_files/parts_linkers"+timestamp.getTime()+".csv");
+            //Add parts/linkers csv header
+            createPartsLinkersCsvHeader(partsLinkersCsv);
+
+            //Import Linkers
+            SBOLDocument linkers = SBOLReader.read("examples/sbol_files/linker_parts.xml");
+
+            //Import Dummy Backbone
+            SBOLDocument dummyBackbone = SBOLReader.read("examples/sbol_files/dummyBackbone.xml");
+
+            //Instantiate List of all components across all designs
+            HashSet<Component> allComponents = new HashSet<Component>();
+
+            //Iterate through each Root Component Definition from the Set of Component Definitions
+            for (ComponentDefinition cd : run) {
+                //Display name of Root Component Definition
+                String cdName = display(cd);
+                System.out.println("Component Definition: " + cdName);
+
+                //Get sorted list of Components
+                List<Component> components = cd.getSortedComponents();
+
+                //Check if Root Component Definition contains a plasmid vector
+                Boolean containsPlasmid = validatePlasmid(cd);
+
+                //If Root Component Definition does not contain a plasmid vector, insert plasmid vector at the start of the list of Components
+                if (!containsPlasmid) {
+                    insertPlasmid(cd, components, doc, dummyBackbone);
+                }
+
+                //Insert Linkers
+                //Need to implement validation on whether construct already contains linkers
+                insertLinkers(cd, components, doc, linkers);
+
+                //Fetch new List of Components
+                components = cd.getSortedComponents();
+
+                //Generate construct csv
+                //Currently, each Root Component Definition only includes 1 construct
+                //The subsequent code for writing construct csv may need changes to write Combinatorial Derivations
+
+                //Write Well
+                constructCsv.append(WELLS.get(well_index));
+
+                //Append List of Components into construct csv
+                for (Component c : components) {
+                    constructCsv.append(",");
+                    constructCsv.append(display(c));
+                    System.out.println(display(c));
+                }
+                constructCsv.append("\n");
+                well_index++;
+
+                //Break out if the plate is full
+                //Currently DNABot can only generate one full plate of constructs
+                //In future, add ability to generate multiple construct csvs to accommodate overflow
+                if (well_index > MAX_WELLS) {
+                    System.out.println("Plate full. Additional constructs will not be included.");
+                    break;
+                }
+
+                //Add parts/linkers to List of all Components
+                allComponents.addAll(components);
+            }
+
+            constructCsv.flush();
+            constructCsv.close();
+
+            //Reset well index for parts/linkers csv
+            well_index = 1;
+
+            //Sort all Components alphabetically
+            TreeSet<String> sortedAllComponents = new TreeSet<String>();
+            for (Component c : allComponents) {
+                //If Component is a linker, include prefix and suffix entries for the linker
+                if (isLinker(c, linkers)) {
+                    sortedAllComponents.add(display(c) + "-S");
+                    sortedAllComponents.add(display(c) + "-P");
+                } else {
+                    sortedAllComponents.add(display(c));
+                }
+            }
+
+            //Write parts/linkers to csv
+            for (String s : sortedAllComponents) {
+                partsLinkersCsv.append(s);
+                partsLinkersCsv.append(",");
+                partsLinkersCsv.append(WELLS.get(well_index));
+                partsLinkersCsv.append("\n");
+                well_index++;
+            }
+
+            partsLinkersCsv.flush();
+            partsLinkersCsv.close();
+        }
+    }
+
+    /**
+     * Generates a construct csv for DNABot using SBOL Document (with Combinatorial Derivations) as input
+     *
+     * @param doc SBOL Document containing combinatorial construct designs
+     * @param constructType Accepts COMPONENT_DEFINITION or COMBINATORIAL_DERIVATION as input
+     * @param constructURI URI of Combinatorial Derivation or Component Definition to assemble
+     * @param maxSize Maximum number of designs in a single run
+     * @throws SBOLValidationException Throws exception if any SBOL Validation Exceptions are encountered.
+     * @throws SBOLConversionException Throws exception if any SBOL Conversion Exceptions are encountered.
+     * @throws IOException Throws exception if any IO Exceptions are encountered.
+     */
+    public void generateCsv(SBOLDocument doc, String constructType, String constructURI, int maxSize) throws SBOLValidationException, SBOLConversionException, IOException{
+        //Instantiate well index
+        int well_index = 1;
+
+        //Instantiate set of all Component Definitions
+        HashSet<ComponentDefinition> allComponentDefs = new HashSet<ComponentDefinition>();
+
+        //Cases
+        switch (constructType){
+            case "COMPONENT_DEFINITION":
+                allComponentDefs.add(doc.getComponentDefinition(URI.create(constructURI)));
+                break;
+            case "COMBINATORIAL_DERIVATION":
+                //Enumerate Combinatorial Derivations and add to set of all Component Definitions
+                System.out.println("Enumerating Combinatorial Derivations...");
+                HashSet<ComponentDefinition> designs = enumerate(doc,doc.getCombinatorialDerivation(URI.create(constructURI)));
+                System.out.println("Completed.");
+                allComponentDefs.addAll(designs);
+                break;
         }
 
-        //Get minimum number of parts required to build all the constructs contained in the SBOL Document
-        int minNumberOfParts = getMinNumberOfParts(allComponentDefs);
-        System.out.println("The minimum number of parts required to build all the constructs in this SBOL Document is: "+minNumberOfParts);
+        //Remove designs with repeated parts
+        System.out.println("Removing designs with repeated parts...");
+        allComponentDefs = filter(allComponentDefs);
+
+        //Display number of Component Definitions to be constructed
+        int numberOfDesigns = allComponentDefs.size();
+        System.out.println("This SBOL Document contains "+numberOfDesigns+" designs to be constructed.");
+
+        //Select number of experimental runs (determined by number of construct csv) and how many designs per run
+        HashSet<ComponentDefinition> run = getRandomSubset(allComponentDefs,maxSize);
+
+        //Find minimum number of parts required for construct csv
+        int minNumberOfParts = getMinNumberOfParts(run);
+
+        //Timestamp
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+
+        //Initialize FileWriter for construct csv
+        FileWriter constructCsv = new FileWriter("./examples/sbol_files/constructs"+timestamp.getTime()+".csv");
+        //Add parts/linkers csv header
+        createConstructCsvHeader(constructCsv, minNumberOfParts);
+
+        //Initialize FileWriter for parts/linkers csv
+        FileWriter partsLinkersCsv = new FileWriter("./examples/sbol_files/parts_linkers"+timestamp.getTime()+".csv");
+        //Add parts/linkers csv header
+        createPartsLinkersCsvHeader(partsLinkersCsv);
 
         //Import Linkers
         SBOLDocument linkers = SBOLReader.read("examples/sbol_files/linker_parts.xml");
@@ -786,20 +998,14 @@ public class SBOLParser {
         //Import Dummy Backbone
         SBOLDocument dummyBackbone = SBOLReader.read("examples/sbol_files/dummyBackbone.xml");
 
-        //Instantiate construct csv with header
-        FileWriter constructCsv = createConstructCsvHeader(minNumberOfParts);
-
-        //Instantiate parts/linkers csv with header
-        FileWriter partsLinkersCsv = createPartsLinkersCsvHeader();
-
         //Instantiate List of all components across all designs
         HashSet<Component> allComponents = new HashSet<Component>();
 
         //Iterate through each Root Component Definition from the Set of Component Definitions
-        for(ComponentDefinition cd: allComponentDefs){
+        for (ComponentDefinition cd : run) {
             //Display name of Root Component Definition
             String cdName = display(cd);
-            System.out.println("Component Definition: "+cdName);
+            System.out.println("Component Definition: " + cdName);
 
             //Get sorted list of Components
             List<Component> components = cd.getSortedComponents();
@@ -808,13 +1014,13 @@ public class SBOLParser {
             Boolean containsPlasmid = validatePlasmid(cd);
 
             //If Root Component Definition does not contain a plasmid vector, insert plasmid vector at the start of the list of Components
-            if(!containsPlasmid){
-                insertPlasmid(cd,components,doc,dummyBackbone);
+            if (!containsPlasmid) {
+                insertPlasmid(cd, components, doc, dummyBackbone);
             }
 
             //Insert Linkers
             //Need to implement validation on whether construct already contains linkers
-            insertLinkers(cd,components,doc,linkers);
+            insertLinkers(cd, components, doc, linkers);
 
             //Fetch new List of Components
             components = cd.getSortedComponents();
@@ -827,7 +1033,7 @@ public class SBOLParser {
             constructCsv.append(WELLS.get(well_index));
 
             //Append List of Components into construct csv
-            for(Component c: components){
+            for (Component c : components) {
                 constructCsv.append(",");
                 constructCsv.append(display(c));
                 System.out.println(display(c));
@@ -838,7 +1044,7 @@ public class SBOLParser {
             //Break out if the plate is full
             //Currently DNABot can only generate one full plate of constructs
             //In future, add ability to generate multiple construct csvs to accommodate overflow
-            if(well_index>MAX_WELLS){
+            if (well_index > MAX_WELLS) {
                 System.out.println("Plate full. Additional constructs will not be included.");
                 break;
             }
@@ -853,46 +1059,20 @@ public class SBOLParser {
         //Reset well index for parts/linkers csv
         well_index = 1;
 
-        //Write parts/linkers to csv
-//        for(Component c:allComponents){
-//            //Validate whether Component is a linker against Linker SBOL Document
-//            if(isLinker(c,linkers)){
-//                //If Component is a linker, include prefix and suffix entries for each linker
-//                partsLinkersCsv.append(display(c)).append("-S");
-//                partsLinkersCsv.append(",");
-//                partsLinkersCsv.append(WELLS.get(well_index));
-//                partsLinkersCsv.append("\n");
-//                well_index++;
-//                partsLinkersCsv.append(display(c)).append("-P");
-//                partsLinkersCsv.append(",");
-//                partsLinkersCsv.append(WELLS.get(well_index));
-//                partsLinkersCsv.append("\n");
-//                well_index++;
-//            }
-//            else{
-//                partsLinkersCsv.append(display(c));
-//                partsLinkersCsv.append(",");
-//                partsLinkersCsv.append(WELLS.get(well_index));
-//                partsLinkersCsv.append("\n");
-//                well_index++;
-//            }
-//        }
-
         //Sort all Components alphabetically
         TreeSet<String> sortedAllComponents = new TreeSet<String>();
-        for(Component c: allComponents){
+        for (Component c : allComponents) {
             //If Component is a linker, include prefix and suffix entries for the linker
-            if(isLinker(c,linkers)){
-                sortedAllComponents.add(display(c)+"-S");
-                sortedAllComponents.add(display(c)+"-P");
-            }
-            else{
+            if (isLinker(c, linkers)) {
+                sortedAllComponents.add(display(c) + "-S");
+                sortedAllComponents.add(display(c) + "-P");
+            } else {
                 sortedAllComponents.add(display(c));
             }
         }
 
         //Write parts/linkers to csv
-        for(String s: sortedAllComponents){
+        for (String s : sortedAllComponents) {
             partsLinkersCsv.append(s);
             partsLinkersCsv.append(",");
             partsLinkersCsv.append(WELLS.get(well_index));
@@ -905,15 +1085,367 @@ public class SBOLParser {
     }
 
     /**
-     * Generates construct csv for a specific Component Definition for DNABot using SBOL Document and Component Definition URI as input
+     * Generates a construct csv for all Component Definitions or all Combinatorial Derivations for DNABot using SBOL Document as input
      *
      * @param doc SBOL Document containing construct designs
-     * @param cdURI URI of Component Definition containing design
+     * @param constructType Accepts COMPONENT_DEFINITION or COMBINATORIAL_DERIVATION or BOTH as input
+     * @param maxSize Maximum number of designs in a single run
+     * @param numberOfRuns Number of runs to be executed
      * @throws SBOLValidationException Throws exception if any SBOL Validation Exceptions are encountered.
      * @throws SBOLConversionException Throws exception if any SBOL Conversion Exceptions are encountered.
      * @throws IOException Throws exception if any IO Exceptions are encountered.
      */
-    public void generateCsv(SBOLDocument doc, URI cdURI) throws SBOLValidationException, SBOLConversionException, IOException{
+    public void generateCsv(SBOLDocument doc, String constructType, int maxSize, int numberOfRuns) throws SBOLValidationException, SBOLConversionException, IOException{
+        //Instantiate well index
+        int well_index = 1;
 
+        //Instantiate set of all Component Definitions
+        HashSet<ComponentDefinition> allComponentDefs = new HashSet<ComponentDefinition>();
+
+        //Obtain set of Combinatorial Derivations
+        Set<CombinatorialDerivation> combinatorialDerivations = doc.getCombinatorialDerivations();
+
+        //Obtain set of Root Component Definitions
+        Set<ComponentDefinition> componentDefs = getRootCds(doc);
+
+        //Cases
+        switch (constructType){
+            case "COMPONENT_DEFINITION":
+                //Remove templates from Root Component Definitions
+                for(CombinatorialDerivation derivation: combinatorialDerivations){
+                    ComponentDefinition template = derivation.getTemplate();
+                    componentDefs.remove(template);
+                }                //Add Root Component Definitions to all Component Definitions
+                allComponentDefs.addAll(componentDefs);
+                break;
+            case "COMBINATORIAL_DERIVATION":
+                //Enumerate Combinatorial Derivations and add to set of all Component Definitions
+                System.out.println("Enumerating Combinatorial Derivations...");
+                for(CombinatorialDerivation combDeriv: combinatorialDerivations){
+                    HashSet<ComponentDefinition> designs = enumerate(doc,combDeriv);
+                    allComponentDefs.addAll(designs);
+                }
+                System.out.println("Completed.");
+                break;
+            case "BOTH":
+                //Remove templates from Root Component Definitions
+                for(CombinatorialDerivation derivation: combinatorialDerivations){
+                    ComponentDefinition template = derivation.getTemplate();
+                    componentDefs.remove(template);
+                }
+                //Add Root Component Definitions to all Component Definitions
+                allComponentDefs.addAll(componentDefs);
+                //Enumerate Combinatorial Derivations and add to set of all Component Definitions
+                System.out.println("Enumerating Combinatorial Derivations...");
+                for(CombinatorialDerivation combDeriv: combinatorialDerivations){
+                    HashSet<ComponentDefinition> designs = enumerate(doc,combDeriv);
+                    allComponentDefs.addAll(designs);
+                }
+                System.out.println("Completed.");
+                break;
+        }
+
+        //Remove designs with repeated parts
+        System.out.println("Removing designs with repeated parts...");
+        allComponentDefs = filter(allComponentDefs);
+
+        //Display number of Component Definitions to be constructed
+        int numberOfDesigns = allComponentDefs.size();
+        System.out.println("This SBOL Document contains "+numberOfDesigns+" designs to be constructed.");
+
+        //Select number of experimental runs (determined by number of construct csv) and how many designs per run
+        HashSet<HashSet<ComponentDefinition>> runs = getRandomSubsets(allComponentDefs,maxSize,numberOfRuns);
+
+        for(HashSet<ComponentDefinition> run: runs) {
+            //Set/Reset well index
+            well_index = 1;
+
+            //Find minimum number of parts required for construct csv
+            int minNumberOfParts = getMinNumberOfParts(run);
+
+            //Timestamp
+            Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+
+            //Initialize FileWriter for construct csv
+            FileWriter constructCsv = new FileWriter("./examples/sbol_files/constructs"+timestamp.getTime()+".csv");
+            //Add parts/linkers csv header
+            createConstructCsvHeader(constructCsv, minNumberOfParts);
+
+            //Initialize FileWriter for parts/linkers csv
+            FileWriter partsLinkersCsv = new FileWriter("./examples/sbol_files/parts_linkers"+timestamp.getTime()+".csv");
+            //Add parts/linkers csv header
+            createPartsLinkersCsvHeader(partsLinkersCsv);
+
+            //Import Linkers
+            SBOLDocument linkers = SBOLReader.read("examples/sbol_files/linker_parts.xml");
+
+            //Import Dummy Backbone
+            SBOLDocument dummyBackbone = SBOLReader.read("examples/sbol_files/dummyBackbone.xml");
+
+            //Instantiate List of all components across all designs
+            HashSet<Component> allComponents = new HashSet<Component>();
+
+            //Iterate through each Root Component Definition from the Set of Component Definitions
+            for (ComponentDefinition cd : run) {
+                //Display name of Root Component Definition
+                String cdName = display(cd);
+                System.out.println("Component Definition: " + cdName);
+
+                //Get sorted list of Components
+                List<Component> components = cd.getSortedComponents();
+
+                //Check if Root Component Definition contains a plasmid vector
+                Boolean containsPlasmid = validatePlasmid(cd);
+
+                //If Root Component Definition does not contain a plasmid vector, insert plasmid vector at the start of the list of Components
+                if (!containsPlasmid) {
+                    insertPlasmid(cd, components, doc, dummyBackbone);
+                }
+
+                //Insert Linkers
+                //Need to implement validation on whether construct already contains linkers
+                insertLinkers(cd, components, doc, linkers);
+
+                //Fetch new List of Components
+                components = cd.getSortedComponents();
+
+                //Generate construct csv
+                //Currently, each Root Component Definition only includes 1 construct
+                //The subsequent code for writing construct csv may need changes to write Combinatorial Derivations
+
+                //Write Well
+                constructCsv.append(WELLS.get(well_index));
+
+                //Append List of Components into construct csv
+                for (Component c : components) {
+                    constructCsv.append(",");
+                    constructCsv.append(display(c));
+                    System.out.println(display(c));
+                }
+                constructCsv.append("\n");
+                well_index++;
+
+                //Break out if the plate is full
+                //Currently DNABot can only generate one full plate of constructs
+                //In future, add ability to generate multiple construct csvs to accommodate overflow
+                if (well_index > MAX_WELLS) {
+                    System.out.println("Plate full. Additional constructs will not be included.");
+                    break;
+                }
+
+                //Add parts/linkers to List of all Components
+                allComponents.addAll(components);
+            }
+
+            constructCsv.flush();
+            constructCsv.close();
+
+            //Reset well index for parts/linkers csv
+            well_index = 1;
+
+            //Sort all Components alphabetically
+            TreeSet<String> sortedAllComponents = new TreeSet<String>();
+            for (Component c : allComponents) {
+                //If Component is a linker, include prefix and suffix entries for the linker
+                if (isLinker(c, linkers)) {
+                    sortedAllComponents.add(display(c) + "-S");
+                    sortedAllComponents.add(display(c) + "-P");
+                } else {
+                    sortedAllComponents.add(display(c));
+                }
+            }
+
+            //Write parts/linkers to csv
+            for (String s : sortedAllComponents) {
+                partsLinkersCsv.append(s);
+                partsLinkersCsv.append(",");
+                partsLinkersCsv.append(WELLS.get(well_index));
+                partsLinkersCsv.append("\n");
+                well_index++;
+            }
+
+            partsLinkersCsv.flush();
+            partsLinkersCsv.close();
+        }
+    }
+
+    /**
+     * Generates a construct csv for all Component Definitions or all Combinatorial Derivations for DNABot using SBOL Document as input
+     *
+     * @param doc SBOL Document containing construct designs
+     * @param constructType Accepts COMPONENT_DEFINITION or COMBINATORIAL_DERIVATION or BOTH as input
+     * @param maxSize Maximum number of designs in a single run
+     * @throws SBOLValidationException Throws exception if any SBOL Validation Exceptions are encountered.
+     * @throws SBOLConversionException Throws exception if any SBOL Conversion Exceptions are encountered.
+     * @throws IOException Throws exception if any IO Exceptions are encountered.
+     */
+    public void generateCsv(SBOLDocument doc, String constructType, int maxSize) throws SBOLValidationException, SBOLConversionException, IOException{
+        //Instantiate well index
+        int well_index = 1;
+
+        //Instantiate set of all Component Definitions
+        HashSet<ComponentDefinition> allComponentDefs = new HashSet<ComponentDefinition>();
+
+        //Obtain set of Combinatorial Derivations
+        Set<CombinatorialDerivation> combinatorialDerivations = doc.getCombinatorialDerivations();
+
+        //Obtain set of Root Component Definitions
+        Set<ComponentDefinition> componentDefs = getRootCds(doc);
+
+        //Cases
+        switch (constructType){
+            case "COMPONENT_DEFINITION":
+                //Remove templates from Root Component Definitions
+                for(CombinatorialDerivation derivation: combinatorialDerivations){
+                    ComponentDefinition template = derivation.getTemplate();
+                    componentDefs.remove(template);
+                }
+                //Add Root Component Definitions to all Component Definitions
+                allComponentDefs.addAll(componentDefs);
+                break;
+            case "COMBINATORIAL_DERIVATION":
+                //Enumerate Combinatorial Derivations and add to set of all Component Definitions
+                System.out.println("Enumerating Combinatorial Derivations...");
+                for(CombinatorialDerivation combDeriv: combinatorialDerivations){
+                    HashSet<ComponentDefinition> designs = enumerate(doc,combDeriv);
+                    allComponentDefs.addAll(designs);
+                }
+                System.out.println("Completed.");
+                break;
+            case "BOTH":
+                //Remove templates from Root Component Definitions
+                for(CombinatorialDerivation derivation: combinatorialDerivations){
+                    ComponentDefinition template = derivation.getTemplate();
+                    componentDefs.remove(template);
+                }
+                //Add Root Component Definitions to all Component Definitions
+                allComponentDefs.addAll(componentDefs);
+                //Enumerate Combinatorial Derivations and add to set of all Component Definitions
+                System.out.println("Enumerating Combinatorial Derivations...");
+                for(CombinatorialDerivation combDeriv: combinatorialDerivations){
+                    HashSet<ComponentDefinition> designs = enumerate(doc,combDeriv);
+                    allComponentDefs.addAll(designs);
+                }
+                System.out.println("Completed.");
+                break;
+        }
+
+        //Remove designs with repeated parts
+        System.out.println("Removing designs with repeated parts...");
+        allComponentDefs = filter(allComponentDefs);
+
+        //Display number of Component Definitions to be constructed
+        int numberOfDesigns = allComponentDefs.size();
+        System.out.println("This SBOL Document contains "+numberOfDesigns+" designs to be constructed.");
+
+        //Select number of experimental runs (determined by number of construct csv) and how many designs per run
+        HashSet<ComponentDefinition> run = getRandomSubset(allComponentDefs,maxSize);
+
+        //Find minimum number of parts required for construct csv
+        int minNumberOfParts = getMinNumberOfParts(run);
+
+        //Timestamp
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+
+        //Initialize FileWriter for construct csv
+        FileWriter constructCsv = new FileWriter("./examples/sbol_files/constructs"+timestamp.getTime()+".csv");
+        //Add parts/linkers csv header
+        createConstructCsvHeader(constructCsv, minNumberOfParts);
+
+        //Initialize FileWriter for parts/linkers csv
+        FileWriter partsLinkersCsv = new FileWriter("./examples/sbol_files/parts_linkers"+timestamp.getTime()+".csv");
+        //Add parts/linkers csv header
+        createPartsLinkersCsvHeader(partsLinkersCsv);
+
+        //Import Linkers
+        SBOLDocument linkers = SBOLReader.read("examples/sbol_files/linker_parts.xml");
+
+        //Import Dummy Backbone
+        SBOLDocument dummyBackbone = SBOLReader.read("examples/sbol_files/dummyBackbone.xml");
+
+        //Instantiate List of all components across all designs
+        HashSet<Component> allComponents = new HashSet<Component>();
+
+        //Iterate through each Root Component Definition from the Set of Component Definitions
+        for (ComponentDefinition cd : run) {
+            //Display name of Root Component Definition
+            String cdName = display(cd);
+            System.out.println("Component Definition: " + cdName);
+
+            //Get sorted list of Components
+            List<Component> components = cd.getSortedComponents();
+
+            //Check if Root Component Definition contains a plasmid vector
+            Boolean containsPlasmid = validatePlasmid(cd);
+
+            //If Root Component Definition does not contain a plasmid vector, insert plasmid vector at the start of the list of Components
+            if (!containsPlasmid) {
+                insertPlasmid(cd, components, doc, dummyBackbone);
+            }
+
+            //Insert Linkers
+            //Need to implement validation on whether construct already contains linkers
+            insertLinkers(cd, components, doc, linkers);
+
+            //Fetch new List of Components
+            components = cd.getSortedComponents();
+
+            //Generate construct csv
+            //Currently, each Root Component Definition only includes 1 construct
+            //The subsequent code for writing construct csv may need changes to write Combinatorial Derivations
+
+            //Write Well
+            constructCsv.append(WELLS.get(well_index));
+
+            //Append List of Components into construct csv
+            for (Component c : components) {
+                constructCsv.append(",");
+                constructCsv.append(display(c));
+                System.out.println(display(c));
+            }
+            constructCsv.append("\n");
+            well_index++;
+
+            //Break out if the plate is full
+            //Currently DNABot can only generate one full plate of constructs
+            //In future, add ability to generate multiple construct csvs to accommodate overflow
+            if (well_index > MAX_WELLS) {
+                System.out.println("Plate full. Additional constructs will not be included.");
+                break;
+            }
+
+            //Add parts/linkers to List of all Components
+            allComponents.addAll(components);
+        }
+
+        constructCsv.flush();
+        constructCsv.close();
+
+        //Reset well index for parts/linkers csv
+        well_index = 1;
+
+        //Sort all Components alphabetically
+        TreeSet<String> sortedAllComponents = new TreeSet<String>();
+        for (Component c : allComponents) {
+            //If Component is a linker, include prefix and suffix entries for the linker
+            if (isLinker(c, linkers)) {
+                sortedAllComponents.add(display(c) + "-S");
+                sortedAllComponents.add(display(c) + "-P");
+            } else {
+                sortedAllComponents.add(display(c));
+            }
+        }
+
+        //Write parts/linkers to csv
+        for (String s : sortedAllComponents) {
+            partsLinkersCsv.append(s);
+            partsLinkersCsv.append(",");
+            partsLinkersCsv.append(WELLS.get(well_index));
+            partsLinkersCsv.append("\n");
+            well_index++;
+        }
+
+        partsLinkersCsv.flush();
+        partsLinkersCsv.close();
     }
 }
