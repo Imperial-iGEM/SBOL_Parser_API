@@ -95,7 +95,7 @@ fun Application.module() {
 
                                     print(response.toString())
                                     if (response.code == 200) {
-                                        response.body?.string()?.let { it1 -> call.respond(HttpStatusCode.OK, it1) }
+                                        response.body?.string()?.let { it1 -> print(it1); call.respond(HttpStatusCode.OK) }
                                     } else {
                                         call.respond(HttpStatusCode.InternalServerError, "Internal Server Error")
                                     }
