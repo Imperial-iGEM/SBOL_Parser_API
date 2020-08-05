@@ -51,7 +51,7 @@ tasks {
     compileKotlin {
     }
     compileJava {
-        options.compilerArgs.addAll(arrayOf("--release", "8"))
+        // options.compilerArgs.addAll(arrayOf("--release", "8"))
     }
     compileTestKotlin {
     }
