@@ -135,7 +135,7 @@ fun parserSBOL(fileBytes: ByteArray): Boolean {
     doc.defaultURIprefix = prURI
     try {
         val parser = SBOLParser()
-        parser.generateCsv(doc,"COMBINATORIAL_DERIVATION",combinatorialDerivationURI,88)
+        parser.generateCsv(doc, "COMBINATORIAL_DERIVATION", combinatorialDerivationURI, 88)
     } catch (e: Exception) {
         e.printStackTrace()
         return false
