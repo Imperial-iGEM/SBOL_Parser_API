@@ -17,6 +17,8 @@ public class linkerOutput {
         document.setTypesInURIs(true);
         document.addNamespace(URI.create(prURI),prPrefix);
         document.setDefaultURIprefix(prURI);
+        document.setComplete(true);
+        document.setCreateDefaults(true);
 
         //Define Linker Sequence, Component Definition
         //Linker: 5'-6bp_RE_Scar + Adaptor + Homology + Adaptor + 4bp_RE_Scar-3'
@@ -1127,11 +1129,24 @@ public class linkerOutput {
         LF3_P.setDescription("Fusion Linker Prefix");
         LF3_P.addSequence(seqLF3_P.getIdentity());
 
+        // Add suffix and prefix as components to linkers
+        HashSet<ComponentDefinition> linkers = new HashSet<ComponentDefinition>();
+        for (ComponentDefinition cd : document.getComponentDefinitions()) {
+            if(!(cd.getDisplayId().contains("_Suffix")||cd.getDisplayId().contains("_Prefix"))) {
+                linkers.add(cd);
+            }
+        }
+        for (ComponentDefinition cd : linkers) {
+            Component suffix = cd.createComponent(cd.getDisplayId()+"_S", AccessType.PUBLIC, URI.create(cd.getIdentity()+"_Suffix"));
+            Component prefix = cd.createComponent(cd.getDisplayId()+"_P", AccessType.PUBLIC, URI.create(cd.getIdentity()+"_Prefix"));
+            cd.createSequenceConstraint(cd.getDisplayId()+"_sc", RestrictionType.PRECEDES, suffix.getIdentity(), prefix.getIdentity());
+        }
+
         return document;
     }
 
     public static void main(String[] args) throws Exception{
         SBOLDocument document = createLinkerOutput();
-        SBOLWriter.write(document,"examples/sbol_files/linker_parts.xml");
+        SBOLWriter.write(document,"examples/sbol_files/basic_linkers_standard.xml");
     }
 }
